@@ -45,16 +45,16 @@ public:
     bool IsSyncMotionActive() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsInELNetModeBP();
+    bool IsInELNetModeBP() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsDebugLogEnabled(int32 DebugLogLevel) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool HasELNetExecAuthorityBP();
+    bool HasELNetExecAuthorityBP() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool HasELNetAuthorityBP();
+    bool HasELNetAuthorityBP() const;
     
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent, BlueprintPure)
     int32 GetSyncMotionPriority() const;

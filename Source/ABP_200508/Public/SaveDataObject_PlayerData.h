@@ -115,6 +115,9 @@ public:
     UFUNCTION(BlueprintCallable)
     bool CreatePossessedItemSaveData(FPossessedItemSaveData _createData);
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool ContainsAutoAddDlcTeamList(FGuid _teamId) const;
+    
     UFUNCTION(BlueprintCallable)
     void AllUpdateUnlockItemSaveData(TArray<FELUnlockItemSaveData>& _saveDataList);
     
@@ -123,6 +126,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void AddPossessedItemQuantity(TArray<FAddPossessItemQuantity> _addDataList);
+    
+    UFUNCTION(BlueprintCallable)
+    void AddAutoAddDlcTeamList(FGuid _teamId);
     
 };
 

@@ -10,5 +10,6 @@ enum class EnCatSubMenu : uint8 {
     Loadout,
     Profile,
     Member,
+    AddReleasedTeam,
 };
 

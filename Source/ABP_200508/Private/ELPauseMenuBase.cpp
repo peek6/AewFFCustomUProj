@@ -15,11 +15,18 @@ void UELPauseMenuBase::SecondTabRight() {
 void UELPauseMenuBase::SecondTabLeft() {
 }
 
+void UELPauseMenuBase::RequestCloseChildMenu() {
+}
+
+void UELPauseMenuBase::RequestClose() {
+}
+
 void UELPauseMenuBase::OpenChildMenu(UELPauseMenuBase* Child) {
 }
 
 void UELPauseMenuBase::Open() {
 }
+
 
 
 

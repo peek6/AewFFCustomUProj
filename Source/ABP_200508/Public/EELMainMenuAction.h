@@ -7,5 +7,6 @@ enum class EELMainMenuAction : uint8 {
     None,
     New,
     Edit,
+    Add,
 };
 

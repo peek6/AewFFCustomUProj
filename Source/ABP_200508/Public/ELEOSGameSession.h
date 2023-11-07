@@ -663,10 +663,16 @@ public:
     bool IsAnyPlayerStateMatched(ESessionPlayerStateNameType StateName, ESessionPlayerStateType State) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsAnyPlayerStateGreaterOrEqual(ESessionPlayerStateNameType StateName, ESessionPlayerStateType State) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsAllPlayerStateMatchedInList(ESessionPlayerStateNameType StateName, const TArray<ESessionPlayerStateType>& StateList) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsAllPlayerStateMatched(ESessionPlayerStateNameType StateName, ESessionPlayerStateType State) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsAllPlayerStateGreaterOrEqual(ESessionPlayerStateNameType StateName, ESessionPlayerStateType State) const;
     
     UFUNCTION(BlueprintCallable)
     bool HasTimeoutSessionP2P();

@@ -49,11 +49,11 @@ public:
     UFUNCTION(BlueprintCallable)
     static void GetFunctionTagArray(TArray<bool>& _OutFunctionTagArray, const FMovesSituation& _MovesSituation);
     
-    // peek:  these types don't seem compatible with Tmap.  Will stub for now.
     UFUNCTION(BlueprintCallable)
-    static void GetEnableFinisherList(TMap<FELMoves_Finisher_Part, FMovesSituation>& _outList, const TMap<FELMoves_Finisher_Part, FMovesSituation>& _BaseList, const FELMoves_Finisher& FinisherData, const FELMoves_Finisher_Part& CurrentFinisher);
+        static void GetEnableFinisherList(TMap<FELMoves_Finisher_Part, FMovesSituation>& _outList, const TMap<FELMoves_Finisher_Part, FMovesSituation>& _BaseList, const FELMoves_Finisher& FinisherData, const FELMoves_Finisher_Part& CurrentFinisher);
     //static void GetEnableFinisherList(TMap<int, FMovesSituation>& _outList, const TMap<int, FMovesSituation>& _BaseList, const FELMoves_Finisher& FinisherData, const FELMoves_Finisher_Part& CurrentFinisher);
     //static void GetEnableFinisherList(TMap<UObject*, UObject*>& _outList, const TMap<FTableRowBase, FTableRowBase>& _BaseList, const FELMoves_Finisher& FinisherData, const FELMoves_Finisher_Part& CurrentFinisher);
+
     UFUNCTION(BlueprintCallable)
     static void GetDamagePartTagArray(TArray<bool>& _OutDamagePartTagArray, const FMovesSituation& _MovesSituation);
     

@@ -12,6 +12,7 @@ enum class eErrorID : uint8 {
     eErrorID_ServerNET,
     eErrorID_EOS,
     eErrorID_Platform,
+    eErrorID_Unique,
     eErrorID_Num,
 };
 

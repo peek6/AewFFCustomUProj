@@ -12,7 +12,7 @@ public:
     int32 m_StatsDataNum;
     
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
-    FSaveData_StatData m_StatsDataList[3000];
+    FSaveData_StatData m_StatsDataList[1400];
     
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 m_StickerHistory[10];

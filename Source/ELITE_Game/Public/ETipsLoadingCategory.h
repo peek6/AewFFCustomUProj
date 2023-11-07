@@ -17,6 +17,7 @@ enum class ETipsLoadingCategory : uint8 {
     SSStartOfMatch,
     SSReturnToMainMenu,
     SSReturnToTop,
+    SSTopFromIntent,
     SSBotMainMenu,
     SSReturnToBotMainMenu,
     MainMenuFromSS,

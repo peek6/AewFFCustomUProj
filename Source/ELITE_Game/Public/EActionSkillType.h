@@ -28,5 +28,6 @@ enum class EActionSkillType : uint8 {
     GloveRemove,
     KneePadRemove,
     ChopBattle,
+    Curse,
 };
 

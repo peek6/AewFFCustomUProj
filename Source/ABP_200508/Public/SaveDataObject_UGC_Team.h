@@ -16,7 +16,10 @@ class ABP_200508_API USaveDataObject_UGC_Team : public USaveDataObjectBase {
 public:
     USaveDataObject_UGC_Team();
     UFUNCTION(BlueprintCallable)
-    void SetTeamUID(int32 Index, FGuid _TeamID);
+    void SetUnlockId(int32 Index, int32 _UnlockId);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTeamUID(int32 Index, FGuid _teamId);
     
     UFUNCTION(BlueprintCallable)
     void SetTeamName(int32 Index, const FString& _TeamName);
@@ -40,6 +43,12 @@ public:
     void SetFanReaction(int32 Index, EFanReaction _FanReaction);
     
     UFUNCTION(BlueprintCallable)
+    void SetDlcVersion(int32 Index, const FString& _DlcVersion);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetDlcTagTeamFlag(int32 Index, bool _DlcTagTeamFlag);
+    
+    UFUNCTION(BlueprintCallable)
     void SetCutScene(int32 Index, FELWrestlerProfile_CutScene _CutScene);
     
     UFUNCTION(BlueprintCallable)
@@ -53,6 +62,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void SetAnnounceId(int32 Index, int32 _AnnounceId);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetUnlockId(int32 Index) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     FGuid GetTeamUID(int32 Index) const;
@@ -77,6 +89,12 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     EFanReaction GetFanReaction(int32 Index) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FString GetDlcVersion(int32 Index) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool GetDlcTagTeamFlag(int32 Index) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     FELWrestlerProfile_CutScene GetCutScene(int32 Index) const;

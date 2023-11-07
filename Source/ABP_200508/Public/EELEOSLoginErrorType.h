@@ -13,5 +13,6 @@ enum class EELEOSLoginErrorType : uint8 {
     Setup,
     TitleStorage,
     LinkAccount,
+    Token,
 };
 

@@ -34,10 +34,16 @@ void UELSSOnlineError::SetDialogReserveMode(bool IsOn) {
 void UELSSOnlineError::Reset(bool excludedNetworkErrorData) {
 }
 
+void UELSSOnlineError::ReserveUniqueError(ESSOnlineErrorType inErrorType) {
+}
+
 void UELSSOnlineError::ReserveErrorDialog(const FSSPlatformNetworkData& inErrorData) {
 }
 
 void UELSSOnlineError::Release() {
+}
+
+void UELSSOnlineError::OpenReservedUniqueErrorDialog() {
 }
 
 void UELSSOnlineError::OpenReservedDialog() {
@@ -53,6 +59,10 @@ void UELSSOnlineError::NetworkErrorReset() {
 }
 
 void UELSSOnlineError::NetworkConnectionStatusChange(EELNetworkConnectionStatus NewNetworkConnectionStatus, EELServerType ServerType) {
+}
+
+bool UELSSOnlineError::IsReservedUniqueError() {
+    return false;
 }
 
 bool UELSSOnlineError::IsReservedDialog() const {
@@ -86,6 +96,9 @@ void UELSSOnlineError::ErrorProcessEnd() {
 
 bool UELSSOnlineError::EndErrDialogData(const FString& tmpID, const bool retDialog) {
     return false;
+}
+
+void UELSSOnlineError::ClearReservedUniqueError() {
 }
 
 void UELSSOnlineError::ClearReservedDialog() {

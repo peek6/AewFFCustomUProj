@@ -21,6 +21,7 @@ enum class ESaveDataType : uint8 {
     CareerModeSnapshot,
     CareerModeSystem,
     SSMode = 0x6E,
+    Tournament = 0x73,
     Max = 0xFF,
     KindStart = 0x1,
     KindEnd = 0xA,

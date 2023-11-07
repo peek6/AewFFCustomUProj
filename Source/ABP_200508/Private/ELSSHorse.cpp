@@ -82,7 +82,7 @@ AELSSPlayer* AELSSHorse::GetVehicleOwner() const {
     return NULL;
 }
 
-void AELSSHorse::GetOff_Multicast_Implementation(AELSSPlayer* Player) {
+void AELSSHorse::GetOff_Multicast_Implementation(AELSSPlayer* Player, uint32 TransitId) {
 }
 
 int32 AELSSHorse::GetCurrentFloorPhysicalSurfaceType(bool inRearFootTrace) const {

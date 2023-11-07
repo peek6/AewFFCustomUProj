@@ -28,5 +28,8 @@ enum class ESSOnlineErrorType : uint8 {
     Closed,
     DisconnectByCheat,
     BlockedByCheat,
+    MovementTimeout,
+    GetSSMasterDataTimeout,
+    End = 0xFF,
 };
 

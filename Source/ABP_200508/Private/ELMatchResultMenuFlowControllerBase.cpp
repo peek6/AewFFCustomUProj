@@ -1,6 +1,10 @@
 #include "ELMatchResultMenuFlowControllerBase.h"
 #include "Templates/SubclassOf.h"
 
+UELMatchResultMenuBase* AELMatchResultMenuFlowControllerBase::StartExtraMenuSequence(TSubclassOf<UELMatchResultMenuBase> InMenuClass) {
+    return NULL;
+}
+
 void AELMatchResultMenuFlowControllerBase::Start() {
 }
 
@@ -18,6 +22,9 @@ void AELMatchResultMenuFlowControllerBase::OnClosedDisconnectedDialog() {
 
 UELMatchResultMenuBase* AELMatchResultMenuFlowControllerBase::GetCurrentMenu() {
     return NULL;
+}
+
+void AELMatchResultMenuFlowControllerBase::EndExtraMenuSequence() {
 }
 
 

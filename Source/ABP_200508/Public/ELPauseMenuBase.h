@@ -34,6 +34,14 @@ public:
     
 protected:
     UFUNCTION(BlueprintCallable)
+    void RequestCloseChildMenu();
+    
+public:
+    UFUNCTION(BlueprintCallable)
+    void RequestClose();
+    
+protected:
+    UFUNCTION(BlueprintCallable)
     void OpenChildMenu(UELPauseMenuBase* Child);
     
 public:
@@ -55,6 +63,9 @@ protected:
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnSecondTabLeft();
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void OnRequestClose();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnOpen();

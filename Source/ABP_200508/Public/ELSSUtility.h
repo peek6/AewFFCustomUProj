@@ -52,6 +52,9 @@ class ABP_200508_API UELSSUtility : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UELSSUtility();
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
+    static bool TryYGS2ResumeRequests(const UObject* WorldContextObject);
+    
     UFUNCTION(BlueprintCallable)
     static void StopSSLoadingScreen();
     
@@ -98,6 +101,9 @@ public:
     static void SetInputMode(APlayerController* pController);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
+    static bool RestartYGS2SetupStep(const UObject* WorldContextObject, bool inForceExec, bool inResetRequest);
+    
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static bool RequestDownloadSSModeServiceParam(const UObject* WorldContextObject, bool inSSModeOnly);
     
     UFUNCTION(BlueprintCallable)
@@ -119,6 +125,9 @@ public:
     static void NotifySSGameEnd(const UObject* WorldContextObject, ESSEndGameReason inReason);
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
+    static bool NeedsRestartYGS2SetupStep(const UObject* WorldContextObject);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static bool IsSSPlayableUser(const UObject* WorldContextObject);
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
@@ -135,6 +144,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static bool IsSSCheatDetected(const UObject* WorldContextObject);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
+    static bool IsExecuteYGS2SetupStep(const UObject* WorldContextObject);
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static bool IsEnableSSMasterData(const UObject* WorldContextObject);

@@ -10,5 +10,6 @@ enum class ELobbyInviteError : uint8 {
     PartyMemberIsFull,
     PartyUnableJoin,
     PartyJoinFailed,
+    ConsoleLobbyNotFound,
 };
 

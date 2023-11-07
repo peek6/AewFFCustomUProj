@@ -127,6 +127,9 @@ protected:
     TArray<EELEntranceCutsceneBeltPositionType> BeltPositionFive;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bEnabledInput;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FELWrestlerProfile_CutScene CurrentProfile_Cutscene;
     
 private:
@@ -173,6 +176,11 @@ public:
     UFUNCTION(BlueprintCallable)
     void SetSceneCaptureOnly(bool Flag);
     
+protected:
+    UFUNCTION(BlueprintCallable)
+    void SetReverseEntrance(bool Reverse);
+    
+public:
     UFUNCTION(BlueprintCallable)
     void SetFullScreenTitantron(bool Flag);
     
@@ -227,6 +235,9 @@ protected:
     bool LoadAssetForSingle(const FELWrestlerProfile_CutScene& CustomData, const FELEntranceCutsceneInfo& CutsceneInfo);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsReverseEntrance() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsNowLoading() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -268,6 +279,9 @@ protected:
     void GetRootLocationAndRotation(FVector& Location, FRotator& Rotation);
     
     UFUNCTION(BlueprintCallable)
+    void GetReverseLocationAndRotation(FVector InLocation, FRotator InRotation, FVector& Location, FRotator& Rotation);
+    
+    UFUNCTION(BlueprintCallable)
     void GetProfileCutsceneFromUnlockItemID(int32 UnlockItemId, int32 BaseEntranceNo, FELWrestlerProfile_CutScene& Cutscene, EELEntranceCutsceneItemType& ItemType);
     
     UFUNCTION(BlueprintCallable)
@@ -286,7 +300,13 @@ protected:
     bool GetModelName_Impl(FCharacterModelName& ModelName, const FELEntranceCutsceneWrestlerInfo& WrestlerInfo) const;
     
     UFUNCTION(BlueprintCallable)
-    void GetMatchRecord_Tag(const TArray<FELEntranceCutsceneWrestlerInfo> Members, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord);
+    void GetMatchRecord_Team(const TArray<FELEntranceCutsceneWrestlerInfo> Members, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord);
+    
+    UFUNCTION(BlueprintCallable)
+    void GetMatchRecord_TagTeam(const TArray<FELEntranceCutsceneWrestlerInfo> Members, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord);
+    
+    UFUNCTION(BlueprintCallable)
+    void GetMatchRecord_Tag(EWrestlerID_N WreslterID, FGuid UID, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord);
     
     UFUNCTION(BlueprintCallable)
     void GetMatchRecord_Single(EWrestlerID_N WreslterID, FGuid UID, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord);

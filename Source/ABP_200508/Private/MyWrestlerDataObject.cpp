@@ -1,5 +1,8 @@
 #include "MyWrestlerDataObject.h"
 
+void UMyWrestlerDataObject::UpdatePresetAttireExParamForDLCLocking(bool IsEntrance, int32 PresetIndex, const FAttireExParam& AttireExParam) {
+}
+
 void UMyWrestlerDataObject::UpdatePreset(const int32 Index, const FPresetParam& NewParam) {
 }
 
@@ -38,6 +41,9 @@ int32 UMyWrestlerDataObject::SetDefaultPresetNo(const int32& NewValue) {
 void UMyWrestlerDataObject::SetDefaultAttire(const FAttireParam& Attire) {
 }
 
+void UMyWrestlerDataObject::ResetPersonParam() {
+}
+
 void UMyWrestlerDataObject::ResetDefaultScout(const EGender Gender) {
 }
 
@@ -46,6 +52,12 @@ void UMyWrestlerDataObject::Reset(const FEditWrestlerParam& NewParam) {
 
 bool UMyWrestlerDataObject::RemovePreset(const int32 Index) {
     return false;
+}
+
+void UMyWrestlerDataObject::RemoveLockedPartsFromScout(UDataTable* EditPartsTable, UDataTable* EditPaintTable) {
+}
+
+void UMyWrestlerDataObject::RemoveLockedPartsFromRoster(UDataTable* EditPartsTable, UDataTable* EditPaintTable) {
 }
 
 void UMyWrestlerDataObject::RemoveGamePlayFlag(const EWrestlerDataGamePlayFlag Flag) {
@@ -183,6 +195,10 @@ void UMyWrestlerDataObject::GetMatchupPose(int32& Out) const {
 void UMyWrestlerDataObject::GetHomeTown(FHomeTownID& Out) const {
 }
 
+FText UMyWrestlerDataObject::GetHeightWeightClaims() const {
+    return FText::GetEmpty();
+}
+
 FText UMyWrestlerDataObject::GetHeightText() const {
     return FText::GetEmpty();
 }
@@ -211,7 +227,7 @@ void UMyWrestlerDataObject::GetDefaultAttire(FAttireParam& Out) const {
 void UMyWrestlerDataObject::GetCloneObject(UMyWrestlerDataObject*& Out, UObject* NewOuter) {
 }
 
-FText UMyWrestlerDataObject::GetBirthDayText() {
+FText UMyWrestlerDataObject::GetBirthDayText(bool isHideBirthDay) {
     return FText::GetEmpty();
 }
 
@@ -243,6 +259,10 @@ UMyWrestlerDataObject* UMyWrestlerDataObject::CreateScoutWrestlerDataObject(cons
 }
 
 UMyWrestlerDataObject* UMyWrestlerDataObject::CreateNewWrestlerDataObject(const FGuid CreateUID) {
+    return NULL;
+}
+
+UMyWrestlerDataObject* UMyWrestlerDataObject::CreateGuestRosterDataObject(const FRosterInfoParam& Param) {
     return NULL;
 }
 

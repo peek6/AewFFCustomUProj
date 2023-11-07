@@ -61,6 +61,9 @@ void UCustomWrestlerAssistComponent::SetPersonParam(const EBasicWrestlerIntParam
 void UCustomWrestlerAssistComponent::SetNickName(const FString& NickName) {
 }
 
+void UCustomWrestlerAssistComponent::SetEditAttireExParam(const EPreviewAttire AttireType, const FAttireExParam& NewParam, int32 PresetNo) {
+}
+
 void UCustomWrestlerAssistComponent::SetCurrentAttireType(const EAttireType NewValue) {
 }
 
@@ -75,6 +78,9 @@ void UCustomWrestlerAssistComponent::ResetTemporaryAttire() {
 }
 
 void UCustomWrestlerAssistComponent::ResetPreviewAttire() {
+}
+
+void UCustomWrestlerAssistComponent::ResetPersonParam() {
 }
 
 void UCustomWrestlerAssistComponent::ResetModify() {

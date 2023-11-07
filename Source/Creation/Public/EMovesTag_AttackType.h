@@ -4,7 +4,7 @@
 
 UENUM(BlueprintType)
 enum class EMovesTag_AttackType : uint8 {
-    PEEK_ADDED_DEFAULT = 0x0,
+    DEFAULT = 0x0,
     AT_Fist = 0x1,
     AT_Chop,
     AT_Elbow = 0x4,

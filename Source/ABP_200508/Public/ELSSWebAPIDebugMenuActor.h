@@ -25,7 +25,7 @@ private:
     void onSetSSGameResultIngest(EYGS2ErrorType enYGS2ErrorType, UYGS2RequestBase* pcYGS2RequestBase);
     
     UFUNCTION(BlueprintCallable)
-    void OnReadTitleStorage(EEOSTitleStorageEvent Event, UEOSTitleStorageBase* TitleStorage, const FEOSTitleStorageProgress& Progress);
+    void OnReadTitleStorage(EEOSTitleStorageEvent Event, UEOSTitleStorageBase* titleStorage, const FEOSTitleStorageProgress& Progress);
     
     UFUNCTION(BlueprintCallable)
     void onGetSSPlayerDataIngest(EYGS2ErrorType enYGS2ErrorType, UYGS2RequestBase* pcYGS2RequestBase);

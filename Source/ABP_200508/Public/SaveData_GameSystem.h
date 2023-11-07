@@ -181,6 +181,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FString m_System_GameTitleVersionName;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 m_News_LatestVersion;
+    
     USaveData_GameSystem();
 };
 

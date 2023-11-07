@@ -13,7 +13,13 @@ public:
     TArray<FELMatchRecordsWrestlerInfo> WrestlerInfos;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FELMatchRecordsWrestlerInfo> TagWrestlerInfos;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FELMatchRecordsTeamInfo> TeamInfos;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FELMatchRecordsTeamInfo> TagTeamInfos;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FELMatchRecordsProfileInfo ProfileInfo;

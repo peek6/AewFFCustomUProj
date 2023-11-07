@@ -12,8 +12,8 @@ FName UTableRowNameUtilityFunction::ToFName(const FTableRowName& TableRowName) {
 }
 
 FDataTableRowHandle UTableRowNameUtilityFunction::ToDataTableRowHandle(const FTableRowName& TableRowName) {
-    FDataTableRowHandle x; 
-    x.RowName = TableRowName.Name; 
+    FDataTableRowHandle x;
+    x.RowName = TableRowName.Name;
     return x;
 }
 

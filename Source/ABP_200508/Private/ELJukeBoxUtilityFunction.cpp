@@ -3,6 +3,9 @@
 void UELJukeBoxUtilityFunction::UpdateJukeboxSaveData(uint8 _saveDataAccessFlag) {
 }
 
+void UELJukeBoxUtilityFunction::SortJukeBoxAtoZ(TArray<FJukeBoxMenuInfo_N>& Params) {
+}
+
 void UELJukeBoxUtilityFunction::SetRandomPlaybackCore(FELTmpJukeboxSaveData& _stJukebox, bool _random) {
 }
 

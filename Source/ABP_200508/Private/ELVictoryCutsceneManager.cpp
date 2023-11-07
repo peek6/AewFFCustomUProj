@@ -29,6 +29,18 @@ void AELVictoryCutsceneManager::OnDamageHPEvent(const AELCharacter_Native* AtkPl
 }
 
 
+void AELVictoryCutsceneManager::GetMatchRecord_Team(EWrestlerID_N WrestlerID_0, FGuid UID_0, EWrestlerID_N WrestlerID_1, FGuid UID_1, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord) {
+}
+
+void AELVictoryCutsceneManager::GetMatchRecord_TagTeam(EWrestlerID_N WrestlerID_0, FGuid UID_0, EWrestlerID_N WrestlerID_1, FGuid UID_1, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord) {
+}
+
+void AELVictoryCutsceneManager::GetMatchRecord_Tag(EWrestlerID_N WrestlerID, FGuid UID, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord) {
+}
+
+void AELVictoryCutsceneManager::GetMatchRecord_Single(EWrestlerID_N WrestlerID, FGuid UID, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord) {
+}
+
 AELVictoryCutsceneManager::AELVictoryCutsceneManager() {
 }
 

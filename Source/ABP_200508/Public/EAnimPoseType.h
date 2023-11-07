@@ -29,5 +29,6 @@ enum class EAnimPoseType : uint8 {
     StandUpFD,
     Table,
     Ladder,
+    SteelStep,
 };
 

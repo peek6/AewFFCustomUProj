@@ -6,7 +6,7 @@ void UYAutoMatch_DebugMenu::Setup(const FAutoMatchSettings& _stSettings) {
 void UYAutoMatch_DebugMenu::SetStopMatch(bool _stop) {
 }
 
-void UYAutoMatch_DebugMenu::SetResultText(const FString& _Text) {
+void UYAutoMatch_DebugMenu::SetResultText(const FString& _text) {
 }
 
 void UYAutoMatch_DebugMenu::SetPreEndAutoMatch(bool _bEnd) {
@@ -81,7 +81,7 @@ int32 UYAutoMatch_DebugMenu::GetOnlineIdentificationNum() const {
     return 0;
 }
 
-void UYAutoMatch_DebugMenu::AddResultText(const FString& _Text) {
+void UYAutoMatch_DebugMenu::AddResultText(const FString& _text) {
 }
 
 UYAutoMatch_DebugMenu::UYAutoMatch_DebugMenu() {

@@ -3,6 +3,9 @@
 void UELMatchResultMenuBase::StartDelay(float InDelayTime) {
 }
 
+void UELMatchResultMenuBase::SetFlowController(AELMatchResultMenuFlowControllerBase* InController) {
+}
+
 
 
 
@@ -43,6 +46,13 @@ UTexture2D* UELMatchResultMenuBase::GetMatchEvaluationTexture(EELMatchScore_Matc
 
 UTexture2D* UELMatchResultMenuBase::GetHPEvaluationTexture(EELMatchScore_MatchType MatchType, int32 HPRate) {
     return NULL;
+}
+
+AELMatchResultMenuFlowControllerBase* UELMatchResultMenuBase::GetFlowController() const {
+    return NULL;
+}
+
+void UELMatchResultMenuBase::CallCustomEvent(const FString& EventName) {
 }
 
 UELMatchResultMenuBase::UELMatchResultMenuBase() {

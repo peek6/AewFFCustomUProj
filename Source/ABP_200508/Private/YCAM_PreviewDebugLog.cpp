@@ -41,7 +41,7 @@ void UYCAM_PreviewDebugLog::AddErrorLog(const FAnimErrInfo& In_AnimErrInfo) {
 UYCAM_PreviewDebugLog::UYCAM_PreviewDebugLog() {
     this->ErrAnimLogHeader = TEXT("DataIndex,MontageID,MovesName,UnlockID,CategoryID,DTName,DTIndex,ErrorInfo,PreviewIndex,DateTime,DistanceOffset,AllOffset,RecordTime");
     this->ErrAnimLogFileTitle = TEXT("MovesAnimDebugLog.csv");
-    this->ErrAnimLogMovesLogPath = TEXT("C:/Users/ari11/AppData/Local/AEWFightForever/Saved/MovesLog/");
+    this->ErrAnimLogMovesLogPath = TEXT("C:/Users/Gabriel/AppData/Local/AEWFightForever/Saved/MovesLog/");
     this->isPrintOutputLog = true;
     this->isPoolLog = true;
     this->isScreenShot = false;

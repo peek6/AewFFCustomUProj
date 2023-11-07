@@ -1,7 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "ELSSWidgetBase.h"
-#include "ESSAttentionGaugeStateLevel.h"
 #include "ESSAttentionReason.h"
 #include "ELSSWidgetHUD_AttentionGauge.generated.h"
 
@@ -26,73 +25,34 @@ protected:
     UWidgetAnimation* FeverLoopAnim;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UWidgetAnimation* CrowdIconLowAnim;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UWidgetAnimation* CrowdIconMidAnim;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UWidgetAnimation* CrowdIconHighAnim;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UWidgetAnimation* BuffInAnim;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UWidgetAnimation* BuffOutAnim;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UMaterialInstanceDynamic* AttentionPtsM_1;
+    TArray<UMaterialInstanceDynamic*> AttentionDenominator;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UMaterialInstanceDynamic* AttentionPtsM_10;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UMaterialInstanceDynamic* AttentionPtsM_100;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UMaterialInstanceDynamic* AttentionPtsM_1000;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UMaterialInstanceDynamic* MaxAttentionPtsM_1;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UMaterialInstanceDynamic* MaxAttentionPtsM_10;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UMaterialInstanceDynamic* MaxAttentionPtsM_100;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UMaterialInstanceDynamic* MaxAttentionPtsM_1000;
+    TArray<UMaterialInstanceDynamic*> AttentionNumerator;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UVerticalBox* PtsVerticalBox;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UWidget* AttentionPts_1000Widget;
+    TArray<UWidget*> AttentionDenominatorWidgets;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UWidget* AttentionPts_100Widget;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UWidget* AttentionPts_10Widget;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UWidget* MaxAttentionPts_1000Widget;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UWidget* MaxAttentionPts_100Widget;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UWidget* MaxAttentionPts_10Widget;
+    TArray<UWidget*> AttentionNumeratorWidgets;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     TArray<UELSSWidgetHUD_AttentionPoint*> PointArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<int32> AddValueArray;
+    TArray<int32> AddValueStackArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<ESSAttentionReason> AttentionReasonArray;
+    TArray<ESSAttentionReason> AttentionReasonStackArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool IsCompleteDuration;
@@ -121,6 +81,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 StackIndex;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 BaseDigits;
+    
 public:
     UELSSWidgetHUD_AttentionGauge();
 protected:
@@ -129,9 +92,6 @@ protected:
     
     UFUNCTION(BlueprintCallable)
     void Update(float InDeltaTime);
-    
-    UFUNCTION(BlueprintCallable)
-    void SortToIndex(int32 InFromIndex, int32 InToIndex);
     
 public:
     UFUNCTION(BlueprintCallable)
@@ -146,10 +106,10 @@ public:
     void ResetAttentionGauge();
     
 protected:
-    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    UFUNCTION(BlueprintCallable)
     void OnStartFeverAnim(bool InPlaySound);
     
-    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    UFUNCTION(BlueprintCallable)
     void OnEndFeverAnim(bool InPlaySound);
     
     UFUNCTION(BlueprintCallable)
@@ -168,12 +128,9 @@ public:
     UFUNCTION(BlueprintCallable)
     void ApplyMaxAttentionValue(int32 InMaxAttentionValue);
     
-    UFUNCTION(BlueprintCallable)
-    void ApplyIconAnim(ESSAttentionGaugeStateLevel inState);
-    
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void ApplyBoostText(float InAttentionBoostValue);
+    void ApplyBoostText(const FString& InAttentionBoostText);
     
 public:
     UFUNCTION(BlueprintCallable)

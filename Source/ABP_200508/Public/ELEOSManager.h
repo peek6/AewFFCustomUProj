@@ -42,6 +42,7 @@ class UELEOSGameSession;
 class UELEOSGameSessionMatching;
 class UELEOSLobby;
 class UELEOSManagerUtility;
+class UELEOSTitleStorageDownloadProgress;
 class UELNetworkObserverBase;
 class UELOnlineNews;
 class UELOnlineRankCalculator;
@@ -133,6 +134,12 @@ private:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UEOSTitleStorage* EOSTitleStorage;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UELEOSTitleStorageDownloadProgress* ELEOSTitleStorageProgress;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UELEOSTitleStorageDownloadProgress* ELEOSTitleStorageProgressRequireFiles;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UEOSApiBase* EOSApiBase;
@@ -387,10 +394,13 @@ public:
     bool IsValidAntiCheatClient() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsValidAntiCheatAll() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsRunningLoginFlow();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsOnline() const;
+    bool IsOnline(bool bSkipEOS) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsLocalPlayerFirstLoggedin() const;
@@ -400,6 +410,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsEOSLogin() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsCompletedSetupStep() const;
     
     UFUNCTION(BlueprintCallable)
     void InvokeEventP2PTimeout();
@@ -414,7 +427,13 @@ public:
     FString GetTitleStorageOnlineVersion();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    UELEOSTitleStorageDownloadProgress* GetTitleStorageDownloadProgress() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     UEOSTitleStorage* GetTitleStorage() const;
+    
+    UFUNCTION(BlueprintCallable)
+    bool GetQuitGameOnFailedEAC();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     float GetP2PTimeoutLatency() const;

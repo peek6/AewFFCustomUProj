@@ -12,6 +12,7 @@ class AActor;
 class AELSSGameState;
 class AELSSLocator;
 class AELSSPlayerState;
+class UELSSAnalyticsLog2YGS2Object;
 
 UCLASS(Blueprintable, NonTransient)
 class ABP_200508_API AELSSGameMode : public AGameLiftGameServerMode {
@@ -74,6 +75,12 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float WaitJoinElapsedTime;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float SavingAnalyticsTimer;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UELSSAnalyticsLog2YGS2Object* AnalyticsLog2YGS2Object;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float TitleStorageDownloadingTimeTotal;

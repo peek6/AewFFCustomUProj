@@ -1,5 +1,8 @@
 #include "ELNetCharacterMovementComponent.h"
 
+void UELNetCharacterMovementComponent::SetNoReplication(bool flg) {
+}
+
 UELNetCharacterMovementComponent::UELNetCharacterMovementComponent() {
     this->ELNetCharacterOwner = NULL;
     this->NetworkDeltaTime = 0.00f;

@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "EELAchievementList.h"
 #include "EELBelt.h"
 #include "EELMatchResultType.h"
@@ -28,8 +29,15 @@
 #include "ECareerStoryResultCondition.h"
 #include "EELEOSEventResult.h"
 #include "EELEOSEventType.h"
+#include "EELTournamentDifficulty.h"
+#include "EELTournamentState.h"
+#include "EELTournamentType.h"
 #include "ELSSMatchResultSpareDataParam.h"
 #include "ELTmpJukeboxSaveData.h"
+#include "ELTournamentBracket.h"
+#include "ELTournamentInfo.h"
+#include "ELTournamentRoundInfo.h"
+#include "ELTournamentWrestler.h"
 #include "ELWrestlerSelectParam.h"
 #include "ELWrestlerSelectParamForNative.h"
 #include "EMiniGameID.h"
@@ -174,7 +182,7 @@ private:
     UELTutorialManager* m_TutorialManager;
     
 protected:
-    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = true))
     FPerPlatformFloat PlatformFPS;
     
 private:
@@ -243,6 +251,10 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UELMovieControlBase* ELMovieControlBase;
     
+public:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FGuid> AutoAddDlcTeamList;
+    
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 BackUpCVarPoolSize;
@@ -260,6 +272,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void WrestlerSelectEnd();
+    
+    UFUNCTION(BlueprintCallable)
+    void StartTournamentMode(EELTournamentType Type, EELTournamentDifficulty Difficulty, FELTournamentInfo Info);
     
 private:
     UFUNCTION(BlueprintCallable)
@@ -306,6 +321,42 @@ protected:
 public:
     UFUNCTION(BlueprintCallable)
     void SetTurnCheckFlg(bool _Flg);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentType(EELTournamentType Type);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentState(EELTournamentState State);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentRound(int32 Round);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentRetryCountLimit(int32 Count);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentRetryCount(int32 Count);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentPlayerWrestler(const FELTournamentWrestler& InWrestler);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentPartnerWrestler(const FELTournamentWrestler& InWrestler);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentMode(bool bSet);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentMiniGame(bool bSet);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentMatchResult(bool bPlayerWin, int32 MatchScore);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentInfo(const FELTournamentInfo& Info);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetTournamentBracket(const TArray<FELTournamentBracket>& Bracket);
     
     UFUNCTION(BlueprintCallable)
     void SetTmpJukeboxSavedata(FELTmpJukeboxSaveData tmpData);
@@ -608,6 +659,9 @@ public:
     void SetAutoMatchAnimationDebugView(bool _view);
     
     UFUNCTION(BlueprintCallable)
+    void SetAttireExMenu(bool bSet);
+    
+    UFUNCTION(BlueprintCallable)
     void SetAllAchievementLocalCount(TArray<int32> _AchievementArray);
     
     UFUNCTION(BlueprintCallable)
@@ -618,6 +672,12 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void ResizeTextureStreamingPool(int32 DesiredCVarPoolSize, int32 DesiredCVarMaxTempMemoryAllowed);
+    
+    UFUNCTION(BlueprintCallable)
+    void ResetTournamentUnlockItemFlag();
+    
+    UFUNCTION(BlueprintCallable)
+    void ResetTournamentRound();
     
     UFUNCTION(BlueprintCallable)
     void ResetTextureStreamingPoolSize();
@@ -662,6 +722,21 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsUseEntrance_N() const;
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsTournamentValidRound() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsTournamentMode() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsTournamentMiniGame() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsTournamentFinalRound() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsTagTournament() const;
+    
     UFUNCTION(BlueprintCallable)
     bool IsStopAutoPlay();
     
@@ -687,6 +762,12 @@ public:
     bool IsPlayCareerMatch();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool IsOpenTournamentMenu();
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool IsOpenAttireEXMenu();
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsMiniGameEnd();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -697,6 +778,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsEntranceCutscene() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsEnableTournamentRetry() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsDispDebugUnlockItemId() const;
@@ -761,6 +845,9 @@ public:
     UFUNCTION(BlueprintCallable)
     bool IsAutoMatchAnimationDebugView();
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsAttireExMenu() const;
+    
     UFUNCTION(BlueprintCallable)
     void InitWholeLevelBGMIDArray();
     
@@ -807,6 +894,54 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UELTutorialManager* GetTutorialManager() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool GetTournamentUnlockItemFlag() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    EELTournamentType GetTournamentType() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    EELTournamentState GetTournamentState() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool GetTournamentRoundInfo(int32 Round, FELTournamentRoundInfo& Info) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetTournamentRound() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetTournamentRetryCountRemain() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetTournamentRetryCountLimit() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetTournamentRetryCount() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    void GetTournamentPlayerWrestler(FELTournamentWrestler& OutWrestler) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    void GetTournamentPartnerWrestler(FELTournamentWrestler& OutWrestler) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FText GetTournamentName() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool GetTournamentMatchResult() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FELTournamentInfo GetTournamentInfo() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    EELTournamentDifficulty GetTournamentDifficulty() const;
+    
+    UFUNCTION(BlueprintCallable)
+    void GetTournamentBracketByRound(int32 Round, FELTournamentBracket& Bracket);
+    
+    UFUNCTION(BlueprintCallable)
+    void GetTournamentBracket(TArray<FELTournamentBracket>& Bracket);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     FELTmpJukeboxSaveData GetTmpJukeboxSavedata();
@@ -885,6 +1020,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     FELMatchResultParam GetMatchResult();
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    bool GetMainMenuDecideGaempad_Impl();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     int32 GetMainMenuDecideControllerID_Impl();
@@ -983,6 +1121,12 @@ public:
     
     UFUNCTION(BlueprintCallable)
     FString GetDebugAutoPlayInfo(int32 _Index);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool GetCurrentTournamentRoundInfo(FELTournamentRoundInfo& Info) const;
+    
+    UFUNCTION(BlueprintCallable)
+    void GetCurrentTournamentBracket(FELTournamentBracket& Bracket);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     int32 GetCurrentJukeboxPlayID();
@@ -1140,6 +1284,9 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static UELGameInstance* Get(const UObject* WorldContextObject);
     
+    UFUNCTION(BlueprintCallable)
+    bool ForceQuitApplication();
+    
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool FindControllerId(const int32 ControllerId) const;
     
@@ -1154,6 +1301,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void DestroyDebugCamera();
+    
+    UFUNCTION(BlueprintCallable)
+    void DecisionTournamentBracket();
     
     UFUNCTION(BlueprintCallable)
     void DebugChangeCurrentLanguage(int32 LangType);
@@ -1172,6 +1322,15 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void AfterTransitionCleaning();
+    
+    UFUNCTION(BlueprintCallable)
+    void AddTournamentRound();
+    
+    UFUNCTION(BlueprintCallable)
+    void AddTournamentRetryCountLimit(int32 Add);
+    
+    UFUNCTION(BlueprintCallable)
+    void AddTournamentRetryCount();
     
     UFUNCTION(BlueprintCallable)
     int32 AddAchievementLocalCountArray(EELAchievementList _Achievement, int32 _Add);

@@ -129,6 +129,9 @@ public:
     UFUNCTION(BlueprintCallable)
     void GetOSSFriendsList(TArray<FELFriendInfo>& OutFriendArray, EELFriendsListType FriendsListType, int32 SortFlag);
     
+    UFUNCTION(BlueprintCallable)
+    bool GetOSSFriendNameByProductUserId(const FString& ProductUserID, FString& FriendName);
+    
     UFUNCTION(BlueprintCallable, BlueprintPure)
     FString GetOSSAccountNickName();
     

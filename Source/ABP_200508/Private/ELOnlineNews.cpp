@@ -1,15 +1,13 @@
 #include "ELOnlineNews.h"
 
-void UELOnlineNews::OnDownloadJson(const FString& _Filename, const FString& _Filedata) {
+UELOnlineNewsData* UELOnlineNews::GetCurrentOnlineNewsData() {
+    return NULL;
 }
 
-void UELOnlineNews::GetOnlineNewDataMap(TMap<FString, UOnlineNewsData*>& _OnlineNewsMap) {
-}
-
-void UELOnlineNews::ClearOnlineNewDataMap() {
+void UELOnlineNews::ClearCurrentOnlineNewData() {
 }
 
 UELOnlineNews::UELOnlineNews() {
-    this->TitleStorage = NULL;
+    this->CurrentOnlineNewsData = NULL;
 }
 

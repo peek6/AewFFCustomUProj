@@ -8,7 +8,7 @@ AActor* UELSSTargetComponent::SearchTargetInteractAttack(const FVector& inDirect
     return NULL;
 }
 
-AActor* UELSSTargetComponent::SearchTargetFromDirection(const FVector& inDirection) const {
+AActor* UELSSTargetComponent::SearchTargetFromDirection(const FVector& inDirection, bool inNewutral) const {
     return NULL;
 }
 
@@ -32,11 +32,12 @@ UELSSTargetComponent::UELSSTargetComponent() {
     this->TargetRangeCollision = CreateDefaultSubobject<USphereComponent>(TEXT("TargetRangeCollision"));
     this->TargetVectorKeepTime = 0.00f;
     this->SearchTargetDistance = 500.00f;
-    this->SearchTargetAngle = 30.00f;
+    this->SearchTargetAngleNeutral = 360.00f;
+    this->SearchTargetAngleDirectional = 180.00f;
     this->SearchTargetHeight = 200.00f;
-    this->SearchTargetDistanceDifficultyScale = 1.00f;
-    this->SearchTargetAngleDifficultyScale = 0.10f;
-    this->SearchTargetPriorityDifficultyScale = 100.00f;
+    this->SearchTargetDistanceDifficultyScale = 0.50f;
+    this->SearchTargetAngleDifficultyScale = 1.00f;
+    this->SearchTargetPriorityDifficultyScale = 0.10f;
     this->TargetActor = NULL;
 }
 

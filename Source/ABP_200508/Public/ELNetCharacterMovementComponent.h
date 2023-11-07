@@ -31,5 +31,8 @@ protected:
     
 public:
     UELNetCharacterMovementComponent();
+    UFUNCTION(BlueprintCallable)
+    void SetNoReplication(bool flg);
+    
 };
 

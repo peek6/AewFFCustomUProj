@@ -13,5 +13,6 @@ enum class EELMatchResultType : uint8 {
     KO,
     Draw,
     Ladder,
+    Quit,
 };
 

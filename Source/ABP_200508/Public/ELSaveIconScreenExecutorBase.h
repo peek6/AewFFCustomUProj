@@ -17,5 +17,8 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     float GetShowMinimumTime();
     
+    UFUNCTION(BlueprintCallable)
+    void ChangeLoadingIconVisible_N(const bool bIsVisible);
+    
 };
 

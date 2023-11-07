@@ -1,8 +1,5 @@
 #include "ELSeesawSystem.h"
 
-void UELSeesawSystem::SetStateType_N(ESeesawRelationType_N NewStateType) {
-}
-
 void UELSeesawSystem::SetBuffType_N(ESeesawBuffType_N NewBuffType) {
 }
 

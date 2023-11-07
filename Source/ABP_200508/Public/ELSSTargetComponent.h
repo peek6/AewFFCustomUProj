@@ -31,7 +31,10 @@ protected:
     float SearchTargetDistance;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float SearchTargetAngle;
+    float SearchTargetAngleNeutral;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float SearchTargetAngleDirectional;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float SearchTargetHeight;
@@ -61,7 +64,7 @@ public:
     AActor* SearchTargetInteractAttack(const FVector& inDirection, float inMaxLength, float inAngleLimit, float inDiffZLimit) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    AActor* SearchTargetFromDirection(const FVector& inDirection) const;
+    AActor* SearchTargetFromDirection(const FVector& inDirection, bool inNewutral) const;
     
     UFUNCTION(BlueprintCallable)
     void OnEndOverlapTargetRange(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);

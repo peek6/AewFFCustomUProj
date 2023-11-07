@@ -12,6 +12,9 @@ class UELNetworkFunctionLibrary : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UELNetworkFunctionLibrary();
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool Switch_TestNetworkServiceAccountAvailable();
+    
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static bool IsNetworkAvailable(const UObject* WorldContextObject);
     

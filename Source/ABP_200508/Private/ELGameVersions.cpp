@@ -35,9 +35,9 @@ void UELGameVersions::Debug_SetOverrideOnlineVersionName(const FString& Value) {
 }
 
 UELGameVersions::UELGameVersions() {
-    this->TitleVersion = TEXT("1.01");
+    this->TitleVersion = TEXT("1.07");
     this->BuildVersion = TEXT("0000");
-    this->OnlineVersion = TEXT("0004");
-    this->SSModeVersion = TEXT("0117");
+    this->OnlineVersion = TEXT("0009");
+    this->SSModeVersion = TEXT("0134");
 }
 

@@ -26,5 +26,3 @@ bool FELMoves_Finisher_Part::Equals(const  FELMoves_Finisher_Part& Other) const
 {
     return Type == Other.Type && RSDir == Other.RSDir && MovesIndex == Other.MovesIndex;
 }
-
-

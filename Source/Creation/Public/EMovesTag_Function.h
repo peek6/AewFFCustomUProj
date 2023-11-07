@@ -4,7 +4,7 @@
 
 UENUM(BlueprintType)
 enum class EMovesTag_Function : uint8 {
-    PEEK_ADDED_DEFAULT = 0x0,
+    DEFAULT = 0x0,
     FC_Pincombo = 0x1,
     FC_DirectionalThrow,
     FC_DelayedGrapple = 0x4,

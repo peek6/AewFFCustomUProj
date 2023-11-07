@@ -29,6 +29,6 @@ AELMenuOperationalWidgetManagerBase::AELMenuOperationalWidgetManagerBase() {
     this->IsEnableInput1P = true;
     this->IsChangeBrother = false;
     this->IsUpdateKeyConfig = false;
-    this->MenuWidgetArray.AddDefaulted(68);
+    this->MenuWidgetArray.AddDefaulted(70);
 }
 

@@ -134,6 +134,9 @@ public:
     static void DeleteMatchRecordsInvalidCAW(uint8 _saveDataAccessFlag);
     
     UFUNCTION(BlueprintCallable)
+    static void DeleteMatchRecordsInvalidCAT(uint8 _saveDataAccessFlag);
+    
+    UFUNCTION(BlueprintCallable)
     static bool ApplyTmpPlayerDataToSaveData(uint8 _saveDataAccessFlag);
     
     UFUNCTION(BlueprintCallable)

@@ -25,6 +25,8 @@ enum class EUnlockItemCategory : uint8 {
     Weapon,
     WrestlerParts,
     TeamLogo,
+    GameplaySystem,
+    Team,
     None,
     Max,
 };

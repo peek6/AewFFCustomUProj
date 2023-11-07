@@ -7,6 +7,9 @@
 #include "EExternalAccountType.h"
 #include "EOSExternalAccountId.h"
 #include "LobbyInvite.h"
+#include "YGS2AnalyticsData.h"
+#include "EELEOSAnalyticsMatchingBeginEnd.h"
+#include "EELEOSAnalyticsMatchingResult.h"
 #include "EELEOSGameStatus.h"
 #include "ELobbyInviteError.h"
 #include "EOSSanitizePartyChatEventDelegate.h"
@@ -28,6 +31,7 @@ class UELNetworkObserverBase;
 class UELOnlineRankCalculator;
 class UELYGS2Manager;
 class UEOSAntiCheatClient;
+class UEOSAttribute;
 class UEOSAuth;
 class UEOSCommunityInfoBase;
 class UEOSCommunityUserBase;
@@ -54,6 +58,12 @@ class ABP_200508_API UELEOSUtility : public UBlueprintFunctionLibrary {
 public:
     UELEOSUtility();
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
+    static void YGS2AnlyticsLobbyParams(const UObject* WorldContextObject, FYGS2AnalyticsData& AnalyticsData);
+    
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
+    static bool YGS2AnalyticsSessionParams(const UObject* WorldContextObject, FYGS2AnalyticsData& AnalyticsDatac, EELEOSAnalyticsMatchingResult MatchingResult);
+    
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static void ToggleDebugELEOSUser(const UObject* WorldContextObject);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
@@ -73,6 +83,9 @@ public:
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static bool ShouldUseExternalDisplayName(const UObject* WorldContextObject, EPlatformType Platform);
+    
+    UFUNCTION(BlueprintCallable)
+    static bool SetProductIdPresence(UEOSUser* User);
     
     UFUNCTION(BlueprintCallable)
     static bool SetPresencePlayerIcons(UEOSUser* User, TArray<int32>& Icons);
@@ -120,7 +133,13 @@ public:
     static bool SendLobbyPacketMiniGameInfo(const UObject* WorldContextObject, UELEOSLobbyMiniGameInfo* Info);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
-    static void RequestYGS2Analytics(const UObject* WorldContextObject, bool MatchingResult);
+    static void RequestYGS2AnalyticsMatchmake(const UObject* WorldContextObject, EELEOSAnalyticsMatchingResult MatchingResult, TMap<FString, UEOSAttribute*> Attributes);
+    
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
+    static void RequestYGS2AnalyticsMatchBeginEnd(const UObject* WorldContextObject, EELEOSAnalyticsMatchingBeginEnd BeginEnd, TMap<FString, UEOSAttribute*> Attributes);
+    
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
+    static void RequestYGS2Analytics(const UObject* WorldContextObject, EELEOSAnalyticsMatchingResult MatchingResult);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static bool RequestSanitizeWrestlerName(const UObject* WorldContextObject, FEOSSanitizeWrestlerNameTextEvent Delegate, UELEOSSanitizeTextWrestlerData* UserData);
@@ -250,6 +269,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static FString GetPlatformAttibuteName(const UObject* WorldContextObject, EPlatformType Platform);
+    
+    UFUNCTION(BlueprintCallable)
+    static void GetOnlineNewsFilename(FString& NewsFilename);
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static int32 GetNowPlayerCount(const UObject* WorldContextObject);
@@ -430,6 +452,9 @@ public:
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static void CheckUsingMultiplayerFeatures(const UObject* WorldContextObject);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
+    static bool CheckPartyAttributeGameMode(const UObject* WorldContextObject, UEOSCommunityInfoBase* CommunityInfo, const FString& Mode);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static void ApplyWrestlerNameText(const UObject* WorldContextObject, UObject* OnlineWrestlerData, const FWrestlerNameText& WrestlerName);

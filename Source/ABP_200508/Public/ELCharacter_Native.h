@@ -5,6 +5,8 @@
 #include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
+#include "AttireExParam.h"
 #include "AttireParam.h"
 #include "EditPartsCategoryName.h"
 #include "PersonParam.h"
@@ -35,6 +37,7 @@
 #include "EAnimPoseType.h"
 #include "EAttackCollision_N.h"
 #include "EBodyHomingType.h"
+#include "ECurseType.h"
 #include "ELNetCharacter.h"
 #include "ELRequestTutorialParam.h"
 #include "EMovesDataTableType_N.h"
@@ -48,10 +51,13 @@
 #include "StAOnColPoint.h"
 #include "StAOnDamage.h"
 #include "StAOnHit.h"
+#include "StActionSkillDetailParam.h"
 #include "StApronDashAttackLocationFix.h"
 #include "StChain.h"
+#include "StCurseTauntParam.h"
 #include "StDQMeter.h"
 #include "StDQReactionAndPlayer.h"
+#include "StDebugOverrideCurseParam.h"
 #include "StDivingStartPart.h"
 #include "StFEquipPassiveSkillData.h"
 #include "StLimbHP.h"
@@ -104,12 +110,12 @@ class UELShockCounter;
 class UEnum;
 class UMaterialInterface;
 class UMatineeCameraShake;
+class UParticleSystem;
 class UParticleSystemComponent;
 class UPrimitiveComponent;
-class USceneComponent;
 class USkeletalMesh;
 class USkeletalMeshComponent;
-class UTexture;
+class UTexture2D;
 
 UCLASS(Blueprintable)
 class ABP_200508_API AELCharacter_Native : public AELNetCharacter {
@@ -201,10 +207,19 @@ protected:
     bool PlaceRing;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float BeforeMoveForwardValue_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float BeforeMoveRightValue_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float BeforeLeftStickForwardValue;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float BeforeLeftStickRIghtValue;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FVector AILastMovementInoutVector_N;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bEnableReserveEnvironmentThrowReach;
@@ -705,6 +720,9 @@ protected:
     TArray<UAnimMontage*> MontageList_IrishWhipRun_N;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<UAnimMontage*> MontageList_IrishWhipRunOverTheTopRope_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<UAnimMontage*> MontageList_FrontChainAll_N;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -742,6 +760,18 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<UAnimMontage*> MontageList_HangRopeCanDamageSituationCornerMotion_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<UAnimMontage*> MontageList_CurseMotion_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<UAnimMontage*> MontageList_GroggyIdleAndWalkEnd_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<UAnimMontage*> MontageList_RingOutMotion_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<UAnimMontage*> MontageList_RingToApronMotion_N;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FStMovesStep MovesStepMotion_N;
@@ -793,6 +823,12 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bBattleRoyaleRingInRun_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UCableComponent* Rope_R;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UCableComponent* Rope_L;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
     TArray<float> MiniGameMashInputs_N;
@@ -1290,6 +1326,126 @@ protected:
     bool EnableSyncBarrierCollision;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FStCurseTauntParam CurseSystemParam;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    ECurseType CurseType;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UPrimitiveComponent* BarricadeCheck_TargetBarricade;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FName BarricadeCheck_TargetSocketName;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float DefaultGravityScale_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float DefaultWalkableFloorAngle_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
+    bool bAtkDirtyMoves_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bEnablePushAOn_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bEnableOutsiderAOn_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 UseRingEscapeCount_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FStActionSkillDetailParam ActionSkillDetailData_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsRunByRunnningCounterSetup_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsPlayCurseAction_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsCurseActor_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FTransform StartOfMatchTransform_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bPickupCursePerformer_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 CurseTauntTrrigetCount_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bReserveResetMeshLocation_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float RequestReplaySec_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bReserveVanishWeaponNextMotion_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bReserveDettachWeaponNextMotion_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UAnimMontage* LastPlayMontage_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<UAnimMontage*> LastActionMontageArray_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bUseAfterExplosionDamageWalk_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float MontagePlayRate_Navi_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float MontagePlayRate_Anim_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float SpeedMultiplyer_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float WrestlerSkillMoveSpeedRate_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bSaveDefaultPoseSnapshot_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bForceAutoTracking;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bUseCutscene_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
+    EWrestlerID_N WrestlerID_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    TArray<UParticleSystemComponent*> CurseFingerParticleList;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsAlreadyLotteryGuardBreakSkill_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsSuccessGuardBreakSkill_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UAnimMontage* RingToApronMontage_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float AOnHitAngleLimit_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bBattleRoyaleAfterAI_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsWinScene_N;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bSkipResetMeshLocation;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FStDQReactionAndPlayer> ReserveDQReactions_N;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -1320,11 +1476,17 @@ protected:
     float RefereeOpacityStateTimeCount;
     
 private:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UELAnimInstance_PartIK* AnimInstance_PartIK;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UELIngameTutorialDialogInputEvent* TutorialInputEvent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UAnimMontage* DeferredUpdateTransformTargetMontage;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UPrimitiveComponent* AllowBarrierCollisionOverlapExcuteComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
     UAnimMontage* PinMontage_N;
@@ -1346,6 +1508,9 @@ private:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UDataTable* PlayerColorDataTable;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UDataTable* CurseTauntSystemTable;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool IsThreadTickAsync;
@@ -1383,11 +1548,17 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float SyncBarrierCollisionInterpolateTime;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FAttireExParam AttireEditParam;
+    
 public:
     AELCharacter_Native();
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
     
 protected:
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void VanishWeapon_Impl();
+    
     UFUNCTION(BlueprintCallable, BlueprintPure=false)
     void UpdateUpperBodyBlend(UPARAM(Ref) TArray<FStUpperBodyBlendUpdateInfo>& InfoArray, const TArray<FStFEquipPassiveSkillData>& EquipArray, const FStPassiveSkillSrcParam& SrcParam, const float TickDeltaSeconds, const bool CanMotion, const float CoreHP, const float HeadHP, const float ArmHP, const float BodyHP, const float LegHP, const float Momentum, const bool SpecialState, const bool DiveSkill, const bool FenceSkill, const bool TopeconSkill, const bool ExplodingMatch, const bool CanNaviOperate, const bool RingInOutOperate, const bool EnviromentOperate, const bool TargetRing, const bool SelfRing, const bool DirectionReverse, UPARAM(Ref) int32& InLastUseUpperBodyBlendIndex, bool& Enable) const;
     
@@ -1413,9 +1584,6 @@ protected:
     
     UFUNCTION(BlueprintCallable)
     void UpdateBothAOnHit_N(const FStAOnDamage& AOnDamage, UPARAM(Ref) TArray<AELCharacter_Native*>& DefPlayer);
-    
-    UFUNCTION(BlueprintCallable)
-    void UnbindDynamicMaterial(USkeletalMeshComponent* SkeletalMeshComponent);
     
 private:
     UFUNCTION(BlueprintCallable)
@@ -1677,9 +1845,6 @@ protected:
     void Tick_ObserveClearShockCounterForSetupMotion_Impl();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void Tick_ObserveChain_Impl();
-    
-    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void Tick_ObserveApronOtherCharaHit_Impl();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
@@ -1687,9 +1852,6 @@ protected:
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     bool Tick_ObserveApronOtherCharaHit_CheckHangRopeDamage_Impl();
-    
-    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void Tick_LocallyControlled_Impl();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void Tick_InvaderDownDestroy_Impl();
@@ -1707,13 +1869,11 @@ protected:
     void Tick_CheckOverlapTableInNavi_Impl();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void Tick_CheckBarricadeOverlapInNotifyAnimTiming();
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void TauntStick(float AxisValue);
     
-public:
-    UFUNCTION(BlueprintCallable)
-    void StartRopeIK_N(UCableComponent* Rope, bool bBoth, bool bRightOnly, float BlendSec, float MaxBlendRate);
-    
-protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void StartRefereeCount_Impl();
     
@@ -1721,6 +1881,11 @@ public:
     UFUNCTION(BlueprintCallable)
     void SpawnSyncMotionMontage(TEnumAsByte<ECollisionChannel> Channel, UPARAM(Ref) TArray<AELCharacter_Native*>& SyncCharArray, const FVector& SyncLocation, const FRotator& SyncRotation, const ESyncPosRotKind SyncPosKind, const ESyncPosRotKind SyncRotKind, float Interpolate, bool bIgnoreSweep, bool bNoSyncRotation, int32 Priority, bool useCharacterHeight);
     
+protected:
+    UFUNCTION(BlueprintCallable)
+    void SpawnCurseEmitter(UParticleSystem* CurseEmitter);
+    
+public:
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
     void ShowSkeletalMeshMaterials(USkeletalMeshComponent* Target, const TArray<FName>& TargetMaterialNames, const bool bShow);
     
@@ -1730,15 +1895,22 @@ public:
     UFUNCTION(BlueprintCallable)
     void SetWorkHipOffsetForCutscene(bool Flag);
     
-    UFUNCTION(BlueprintCallable)
-    void SetVectorParameterForMID(const FName ParameterName, const FVector& NewValue, const FName Specific);
+protected:
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void SetupSubmissionParam_Impl();
     
+public:
     UFUNCTION(BlueprintCallable)
     void SetupPreset(EBasicFunctionResult& Result, const FPersonParam& PersonParam, const FPresetParam& PresetParam, const FAttireParam ExtraParts, const bool bEntrance);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void SetupForInteractiveWinscene();
     
+protected:
+    UFUNCTION(BlueprintCallable)
+    bool SetupCurseSystemParam(bool NoCheckUnlock);
+    
+public:
     UFUNCTION(BlueprintCallable)
     void SetupCharacter(EBasicFunctionResult& Result, const FWrestlerSetupParam& SetupParam, const FAttireParam ExtraParts, const bool bEntrance, const bool bSpecificEntrance);
     
@@ -1749,11 +1921,6 @@ protected:
     UFUNCTION(BlueprintCallable)
     void SetTouchLeaveRing(bool Flag);
     
-public:
-    UFUNCTION(BlueprintCallable)
-    void SetTextureParameterForMID(const FName ParameterName, UTexture* NewTexture, const FName Specific);
-    
-protected:
     UFUNCTION(BlueprintCallable)
     void SetSyncMotionAnyChar_N(UPARAM(Ref) TArray<AELCharacter_Native*>& SyncCharArray, UPARAM(Ref) ASyncMotionMontage*& NewSyncMotion);
     
@@ -1781,11 +1948,6 @@ public:
     UFUNCTION(BlueprintCallable)
     void SetIsThreadTickAsync(bool isThread);
     
-protected:
-    UFUNCTION(BlueprintCallable)
-    void SetIgnoreActorWhenMoving_N(const TArray<AActor*>& IgnoreSweepActorArray, const bool bShouldIgnore);
-    
-public:
     UFUNCTION(BlueprintCallable)
     void SetHipOffsetForCutscene(FVector Offset);
     
@@ -1801,11 +1963,19 @@ protected:
     
 public:
     UFUNCTION(BlueprintCallable)
+    void SetEditAttireExParam(const FAttireExParam Param);
+    
+    UFUNCTION(BlueprintCallable)
     void SetDeferredUpdateYaw(float Yaw, UAnimMontage* targetMontage);
     
     UFUNCTION(BlueprintCallable)
     void SetDeferredUpdateDeltaLocation(const FVector& Delta, UAnimMontage* targetMontage);
     
+protected:
+    UFUNCTION(BlueprintCallable)
+    void SetDebugCurseParam_Apply(const FStDebugOverrideCurseParam& DebugCurseParam, bool bNoCheckDLC);
+    
+public:
     UFUNCTION(BlueprintCallable)
     void SetDeadReason(EELMatchResultType Type);
     
@@ -1814,7 +1984,7 @@ protected:
     void SetDamageReaction_CurrentMontage_N();
     
     UFUNCTION(BlueprintCallable)
-    void SetComponentsRelativeScale(const TArray<USceneComponent*>& Targets, FVector NewScale);
+    void SetCurseSystemParam(FName RowName);
     
     UFUNCTION(BlueprintCallable)
     void SetCollisionsEnabled(const TArray<UPrimitiveComponent*>& Targets, TEnumAsByte<ECollisionEnabled::Type> NewEnabled);
@@ -1841,8 +2011,14 @@ protected:
     UFUNCTION(BlueprintCallable)
     void SetAttackCollisionEnable_N(const int32 Type, const bool Enable);
     
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void SetAnimPose_Impl(EAnimPoseType NewType);
+    
     UFUNCTION(BlueprintCallable, Server, Unreliable)
     void S_StopUpperBodyBlendMotion_N();
+    
+    UFUNCTION(BlueprintCallable, Server, Unreliable)
+    void S_SetTick_N(float LS_Forward, float LS_Right, float RS_Forward, float RS_Right, const FVector& InOut, float WalkSpeed, float Yaw);
     
     UFUNCTION(BlueprintCallable, Server, Unreliable)
     void S_PlayUpperBodyBlendMotion_N(UAnimSequence* AnimSequence);
@@ -1853,19 +2029,14 @@ protected:
     UFUNCTION(BlueprintCallable, Server, Unreliable)
     void S_AddActorWorldOffset_N(const FVector& AddLocation, const bool bSweep, const bool bTeleport);
     
-public:
-    UFUNCTION(BlueprintCallable, BlueprintPure=false)
-    void ResetWeaponDiffHeight() const;
-    
-protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void ResetRefereeCountState_Impl();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void ResetRefereeCount_Impl();
     
-    UFUNCTION(BlueprintCallable)
-    void ResetMeshMaterials();
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void ResetMoveIgnoreActors_Impl(float DelaySec);
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
@@ -1874,6 +2045,9 @@ public:
 protected:
     UFUNCTION(BlueprintCallable)
     void ResetCostume();
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void ResetAttackCollision_Impl();
     
     UFUNCTION(BlueprintCallable)
     void RequestTutorial_N(FName TutorialName);
@@ -1890,10 +2064,16 @@ protected:
     void PlayPassiveSkillEffectandCameraImpl(const FStPassiveSkillData& Passive);
     
 public:
+    UFUNCTION(BlueprintCallable)
+    void PlayMontageCore_N(UPARAM(Ref) UAnimMontage*& Montage, const FString& Section, float InTimeToStartMontageAt, bool bInitMovementMode, float DelayClearMoveIgnoreActors);
+    
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void PlayMontage_Impl(const UAnimMontage* Montage);
     
 protected:
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void PlayerMontageLinkObjectMotion_Impl();
+    
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void PlayDQRefereeVoice_Impl(ERefereeDQReactionKind_N Kind);
     
@@ -1940,6 +2120,9 @@ public:
     void OnDamageHPEvent_N(AELCharacter_Native* AtkPlayer, float DamageHead, float DamageArm, float DamageBody, float DamageLeg);
     
 protected:
+    UFUNCTION(BlueprintCallable)
+    void OnCurseEvent_N(float InDuration);
+    
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnCompletedTutorials_Impl();
     
@@ -1953,6 +2136,21 @@ public:
     UFUNCTION(BlueprintCallable)
     void OnChangedLastHitMovesSituationIndex(int32 MovesSituationIndex);
     
+    UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+    void OnApplyAttireExToSkin(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, bool bApplyDarkSkinMode);
+    
+    UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+    void OnApplyAttireExToHair(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyHairColor, UTexture2D* HairColorTexture, bool bApplyDarkSkinMode);
+    
+    UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+    void OnApplyAttireExtoEye(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, FLinearColor EyeColor, float EyeEmissivePower);
+    
+    UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+    void OnApplyAttireExtoAttire(EWrestlerID_N WrestlerID, USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, bool bApplyPatternTexture, UTexture2D* PatternTexture, bool bApplyDarkSkinMode);
+    
+    UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+    void OnApplyAttireEx(EWrestlerID_N WrestlerID, bool bApplyToLeftEye, UMaterialInterface* LeftEyeMaterial, FLinearColor LeftEyeColor, float LeftEyeEmissivePower, bool bApplyToRightEye, UMaterialInterface* RightEyeMaterial, FLinearColor RightEyeColor, float RightEyeEmissivePower, bool bApplyToHair, UTexture2D* HairColorTexture, bool bApplyDarkSkinModeToHair, bool bApplyToSkin, UMaterialInterface* SkinMaterial, bool bApplyDarkSkinModeToSkin, bool bApplyToAttire, UMaterialInterface* AttireMaterial, bool bApplyPatternTextureToAttire, UTexture2D* AttirePatternTexture, bool bApplyDarkSkinModeToAttire, const TMap<uint8, bool>& PartsApplyList);
+    
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void MoveRight(float AxisValue);
@@ -1960,20 +2158,20 @@ protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void MoveForward(float AxisValue);
     
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void MotionChangeResetParam_Impl(UAnimMontage* Montage);
+    
     UFUNCTION(BlueprintCallable, NetMulticast, Unreliable)
     void M_SetDeferredUpdateYawMainMontage_N(float Yaw);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Unreliable)
-    void M_SetDeferredUpdateYaw_N(float Yaw, UAnimMontage* Montage);
+    void M_SetActorRotation_N(const FRotator& NewRotation, const bool bTeleport, bool bCheckSync);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Unreliable)
-    void M_SetActorRotation_N(const FRotator& NewRotation, const bool bTeleport);
+    void M_SetActorLocationAndRotation_N(const FVector& NewLocation, const FRotator& NewRotation, const bool bSweep, const bool bTeleport, bool bCheckSync);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Unreliable)
-    void M_SetActorLocationAndRotation_N(const FVector& NewLocation, const FRotator& NewRotation, const bool bSweep, const bool bTeleport);
-    
-    UFUNCTION(BlueprintCallable, NetMulticast, Unreliable)
-    void M_SetActorLocation_N(const FVector& NewLocation, const bool bSweep, const bool bTeleport);
+    void M_SetActorLocation_N(const FVector& NewLocation, const bool bSweep, const bool bTeleport, bool bCheckSync);
     
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void LadderMatchMiniGameStartServer(int32 StartProgress, UAnimMontage* GrabLoopMontage);
@@ -2048,9 +2246,6 @@ protected:
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsSystemChar_N() const;
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    void IsSyncWith_N(const ACharacter* Chara, bool& bValue) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsSyncMainSlot_N() const;
@@ -2133,7 +2328,13 @@ protected:
     bool IsRingToApronChain_N() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsRingToApron_N() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsRingSideToApron_N() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsRingOutOrRingToApron_N() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsRingOutCountMotion_N() const;
@@ -2202,9 +2403,6 @@ public:
 protected:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsObstructionMotion_N() const;
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsNoAbilityReactionMotion_N() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsNavigationMontage_N(UPARAM(Ref) UAnimMontage*& Montage) const;
@@ -2283,6 +2481,9 @@ protected:
     bool IsIWThrow_N() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsIrishWhipRunStateOverTheTopRope_N(bool bCheckOnlyMontage) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsIrishWhipRunState_N(bool bCheckOnlyMontage) const;
     
 public:
@@ -2292,6 +2493,9 @@ public:
 protected:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsIdleMotion_N() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsHitAOnInLimitRange(AELCharacter_Native* Target) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsHideGuideHudCornerTurnOver_N();
@@ -2352,9 +2556,12 @@ protected:
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsEnableSyncBarrierCollision();
+    bool IsEnableSyncBarrierCollision() const;
     
 protected:
+    UFUNCTION(BlueprintCallable)
+    bool IsEnableSpawnCursePerformer_N();
+    
     UFUNCTION(BlueprintCallable)
     bool IsEnableRule_TraningMode_N();
     
@@ -2454,6 +2661,9 @@ protected:
     UFUNCTION(BlueprintCallable, BlueprintPure=false)
     void IsEnablePassiveSkillSituation_N(const FStFEquipPassiveSkillData& EquipData, const FStPassiveSkillSrcParam& SrcParam, bool& Enable, bool& TimerEffect, float& TimerRemain) const;
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsEnableHitColGenerateOverlapEvent();
+    
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsEnableHeightAdjust_N() const;
@@ -2467,6 +2677,9 @@ protected:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsEnableActionSkill_N(EActionSkillType Type) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsEcistGuardBreakSkill_Impl(const FRandomStream& RandStream);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsDQCautionMotion_N() const;
@@ -2520,6 +2733,9 @@ public:
     
 protected:
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsCurseMotion_N() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsCornerTopOrRiseMotion_N() const;
     
 public:
@@ -2542,6 +2758,11 @@ protected:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsCornerChain_N(bool& bFront) const;
     
+public:
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    bool IsCompletedStageCollisionInterpolation_N();
+    
+protected:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsChainWrestlingLoop_N() const;
     
@@ -2573,7 +2794,13 @@ protected:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsBlockLoopPose_N() const;
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsBigman_N() const;
+    
 public:
+    UFUNCTION(BlueprintCallable)
+    bool IsBeginStandChainGrapple_N();
+    
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsBattleRoyaleRingInRun_N() const;
     
@@ -2622,6 +2849,11 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsAIController_N() const;
     
+protected:
+    UFUNCTION(BlueprintCallable)
+    void InitAnimationParam_N(UPARAM(Ref) UAnimMontage*& Montage, bool bInitMovementMode, float DelayClearMoveIgnoreActors);
+    
+public:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, BlueprintPure)
     int32 GetWrestlerVoiceID_Native() const;
     
@@ -2676,6 +2908,9 @@ public:
     UELSeesawSystem* GetSeesawSystem() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    FTransform GetRootMotionTransform() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool GetRollOutDownState_N() const;
     
 protected:
@@ -2707,9 +2942,6 @@ protected:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     AActor* GetOverlappingActorTag_N(TSubclassOf<AActor> ClassFilter, FName Tag) const;
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    AActor* GetOverlappingActor_N(TSubclassOf<AActor> ClassFilter) const;
     
 public:
     UFUNCTION(BlueprintCallable)
@@ -2783,8 +3015,16 @@ public:
     FFootCtrlParam GetFootIKParam_N();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    FAttireExParam GetEditAttireExParam() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool GetDebugOption_Idle_N() const;
     
+protected:
+    UFUNCTION(BlueprintCallable)
+    ECurseType GetDebugCurseParam_EffectProbability(FName Type);
+    
+public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     EELMatchResultType GetDeadReason() const;
     
@@ -3061,9 +3301,6 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
     bool ChangeMesh(const FELWrestlerMeshParam WrestlerMeshParam);
     
-    UFUNCTION(BlueprintCallable)
-    void ChangedTagWait(bool Flag);
-    
 protected:
     UFUNCTION(BlueprintCallable, NetMulticast, Unreliable)
     void CE_M_SetORMovement_N(bool bValue);
@@ -3134,6 +3371,21 @@ protected:
     void BeginOverlap_HitCol_N(const AActor* OtherActor, UPrimitiveComponent* OtherComp);
     
 public:
+    UFUNCTION(BlueprintCallable)
+    void ApplyAttireExToSkin(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, bool bApplyDarkSkinMode);
+    
+    UFUNCTION(BlueprintCallable)
+    void ApplyAttireExToHair(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyHairColor, UTexture2D* HairColorTexture, bool bApplyDarkSkinMode);
+    
+    UFUNCTION(BlueprintCallable)
+    void ApplyAttireExtoEye(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, FLinearColor EyeColor, float EyeEmissivePower);
+    
+    UFUNCTION(BlueprintCallable)
+    void ApplyAttireExtoAttire(EWrestlerID_N WrestlerID, USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, bool bApplyPatternTexture, UTexture2D* PatternTexture, bool bApplyDarkSkinMode);
+    
+    UFUNCTION(BlueprintCallable)
+    void ApplyAttireEx(EWrestlerID_N WrestlerID, bool bApplyToLeftEye, UMaterialInterface* LeftEyeMaterial, FLinearColor LeftEyeColor, float LeftEyeEmissivePower, bool bApplyToRightEye, UMaterialInterface* RightEyeMaterial, FLinearColor RightEyeColor, float RightEyeEmissivePower, bool bApplyToHair, UTexture2D* HairColorTexture, bool bApplyDarkSkinModeToHair, bool bApplyToSkin, UMaterialInterface* SkinMaterial, bool bApplyDarkSkinModeToSkin, bool bApplyToAttire, UMaterialInterface* AttireMaterial, bool bApplyPatternTextureToAttire, UTexture2D* AttirePatternTexture, bool bApplyDarkSkinModeToAttire, const TMap<uint8, bool>& PartsApplyList);
+    
     UFUNCTION(BlueprintCallable)
     void AimTarget_N();
     

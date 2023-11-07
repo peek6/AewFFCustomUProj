@@ -11,6 +11,9 @@ class ABP_200508_API UELGameSystemDataUtilityFunction : public UBlueprintFunctio
 public:
     UELGameSystemDataUtilityFunction();
     UFUNCTION(BlueprintCallable, meta=(WorldContext="_pWorldContextObject"))
+    static void SetSystem_NewsLatestVersion(int32 _value, UObject* _pWorldContextObject);
+    
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="_pWorldContextObject"))
     static void SetSystem_GameTitleVersionName(const FString& _value, UObject* _pWorldContextObject);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="_pWorldContextObject"))
@@ -153,6 +156,9 @@ public:
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="_pWorldContextObject"))
     static void SaveRequestSystemData(UObject* _pWorldContextObject, uint8 _saveDataAccessFlag);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="_pWorldContextObject"))
+    static int32 GetSystem_NewsLatestVersion(UObject* _pWorldContextObject);
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="_pWorldContextObject"))
     static FString GetSystem_GameTitleVersionName(UObject* _pWorldContextObject);

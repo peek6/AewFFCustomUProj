@@ -9,6 +9,8 @@ void UELPopupNotificationManagerBase::RequestPopup_ChatMessage(const FString& _u
 void UELPopupNotificationManagerBase::RequestPopup_ChallengeCompleted(int32 _challengeId) {
 }
 
+void UELPopupNotificationManagerBase::ReadytoStartPopupLayout_N() {
+}
 
 
 
@@ -19,9 +21,14 @@ bool UELPopupNotificationManagerBase::IsExecutePopup() const {
 void UELPopupNotificationManagerBase::CheckNextPopup() {
 }
 
+void UELPopupNotificationManagerBase::CheckLayoutViewport_N() {
+}
+
 void UELPopupNotificationManagerBase::ChangeExecutePopup(bool _state) {
 }
 
 UELPopupNotificationManagerBase::UELPopupNotificationManagerBase() {
+    this->PopupWidget_N = NULL;
+    this->ZOrder_N = 310;
 }
 

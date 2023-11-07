@@ -7,10 +7,10 @@ bool UELYGS2Manager::SetServerListData(const FString& Data) {
 void UELYGS2Manager::SetNetworkObserver(UELNetworkObserverBase* _pNetworkObserver) {
 }
 
-void UELYGS2Manager::SetDisplayNameForDebug(const FString& DisplayNameForDebug) {
+void UELYGS2Manager::SetDisplayName(const FString& DisplayName) {
 }
 
-bool UELYGS2Manager::RequestSetDisplayNameForDebug() {
+bool UELYGS2Manager::RequestSetDisplayName() {
     return false;
 }
 
@@ -27,6 +27,9 @@ void UELYGS2Manager::RequestCancelForDebug(UYGS2RequestBase* Request, EYGS2Error
 
 bool UELYGS2Manager::RequestAuth() {
     return false;
+}
+
+void UELYGS2Manager::RemoveRequests(EYGS2Api inApiType) {
 }
 
 void UELYGS2Manager::OnYGS2Response(EYGS2ErrorType ErrorType, UYGS2RequestBase* Request) {
@@ -104,6 +107,12 @@ bool UELYGS2Manager::GetBaseURLByArea(const FString& Area, FString& root_url, in
 
 bool UELYGS2Manager::FindNearestServerPing(FString& Name, float& Ping) {
     return false;
+}
+
+void UELYGS2Manager::EmptyRequests() {
+}
+
+void UELYGS2Manager::ClearNetworkErrorFlag() {
 }
 
 void UELYGS2Manager::ApplicationStatusChanged(EELApplicationStatus AppStatus) {

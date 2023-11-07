@@ -6,6 +6,7 @@
 #include "ELMatchScore_StarData.h"
 #include "ELMatchResultMenuBase.generated.h"
 
+class AELMatchResultMenuFlowControllerBase;
 class UDataTable;
 class UTexture2D;
 
@@ -13,6 +14,8 @@ UCLASS(Blueprintable, EditInlineNew)
 class ABP_200508_API UELMatchResultMenuBase : public UELUserWidget {
     GENERATED_BODY()
 public:
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCallCustomEvent, const FString&, EventName);
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<UTexture2D*> EvaluationTextures;
     
@@ -25,9 +28,15 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float DelayTime;
     
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnCallCustomEvent OnCallCustomEvent;
+    
     UELMatchResultMenuBase();
     UFUNCTION(BlueprintCallable)
     void StartDelay(float InDelayTime);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetFlowController(AELMatchResultMenuFlowControllerBase* InController);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnPressUp(bool IsRepeat);
@@ -85,6 +94,12 @@ public:
     
     UFUNCTION(BlueprintCallable)
     UTexture2D* GetHPEvaluationTexture(EELMatchScore_MatchType MatchType, int32 HPRate);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    AELMatchResultMenuFlowControllerBase* GetFlowController() const;
+    
+    UFUNCTION(BlueprintCallable)
+    void CallCustomEvent(const FString& EventName);
     
 };
 

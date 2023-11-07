@@ -34,9 +34,6 @@ public:
     void SetEnableSweepAfterSyncOff(int32 CharaIndex, bool bEnable);
     
     UFUNCTION(BlueprintCallable)
-    void SetBasePointLocationTeleport(const FVector& NewLocation);
-    
-    UFUNCTION(BlueprintCallable)
     void SetBasePointLocationAndRotation(const FVector& NewLocation, const FRotator& NewRotation);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)

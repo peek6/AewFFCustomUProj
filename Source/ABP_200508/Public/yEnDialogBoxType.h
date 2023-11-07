@@ -13,6 +13,7 @@ enum class yEnDialogBoxType : uint8 {
     SingleItemGetDialog,
     TutorialDialog,
     DisconnectedGamepadDialog,
+    OnlineNewsDialog,
     None,
 };
 

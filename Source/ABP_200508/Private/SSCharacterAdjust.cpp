@@ -37,6 +37,12 @@ FSSCharacterAdjust::FSSCharacterAdjust() {
     this->ForceTeleportZ = 0.00f;
     this->SyncInterpLocationTime = 0.00f;
     this->SyncInterpLocationTimeLocalFinisher = 0.00f;
+    this->TargetDistance = 0.00f;
+    this->TargetAngle = 0.00f;
+    this->TargetAngleNeutral = 0.00f;
+    this->TargetPriorityDistanceCoef = 0.00f;
+    this->TargetPriorityAngleCoef = 0.00f;
+    this->TargetPriorityObjectTypeCoef = 0.00f;
     this->RefreshParamOnEveryTick = false;
 }
 

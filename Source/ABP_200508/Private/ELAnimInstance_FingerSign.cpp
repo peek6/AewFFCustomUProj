@@ -1,9 +1,5 @@
 #include "ELAnimInstance_FingerSign.h"
 
-bool UELAnimInstance_FingerSign::IsUseMotion(EELFingerSignPartType Part) {
-    return false;
-}
-
 UELAnimInstance_FingerSign::UELAnimInstance_FingerSign() {
     this->IsUseFingerSignLeft = false;
     this->InBlendSecondsLeft = 0.00f;

@@ -1,5 +1,12 @@
 #include "ELEOSUtility.h"
 
+void UELEOSUtility::YGS2AnlyticsLobbyParams(const UObject* WorldContextObject, FYGS2AnalyticsData& AnalyticsData) {
+}
+
+bool UELEOSUtility::YGS2AnalyticsSessionParams(const UObject* WorldContextObject, FYGS2AnalyticsData& AnalyticsDatac, EELEOSAnalyticsMatchingResult MatchingResult) {
+    return false;
+}
+
 void UELEOSUtility::ToggleDebugELEOSUser(const UObject* WorldContextObject) {
 }
 
@@ -21,6 +28,10 @@ bool UELEOSUtility::SortIDListByResultScore(const UObject* WorldContextObject, c
 }
 
 bool UELEOSUtility::ShouldUseExternalDisplayName(const UObject* WorldContextObject, EPlatformType Platform) {
+    return false;
+}
+
+bool UELEOSUtility::SetProductIdPresence(UEOSUser* User) {
     return false;
 }
 
@@ -81,7 +92,13 @@ bool UELEOSUtility::SendLobbyPacketMiniGameInfo(const UObject* WorldContextObjec
     return false;
 }
 
-void UELEOSUtility::RequestYGS2Analytics(const UObject* WorldContextObject, bool MatchingResult) {
+void UELEOSUtility::RequestYGS2AnalyticsMatchmake(const UObject* WorldContextObject, EELEOSAnalyticsMatchingResult MatchingResult, TMap<FString, UEOSAttribute*> Attributes) {
+}
+
+void UELEOSUtility::RequestYGS2AnalyticsMatchBeginEnd(const UObject* WorldContextObject, EELEOSAnalyticsMatchingBeginEnd BeginEnd, TMap<FString, UEOSAttribute*> Attributes) {
+}
+
+void UELEOSUtility::RequestYGS2Analytics(const UObject* WorldContextObject, EELEOSAnalyticsMatchingResult MatchingResult) {
 }
 
 bool UELEOSUtility::RequestSanitizeWrestlerName(const UObject* WorldContextObject, FEOSSanitizeWrestlerNameTextEvent Delegate, UELEOSSanitizeTextWrestlerData* UserData) {
@@ -246,6 +263,9 @@ int32 UELEOSUtility::GetPlatformAttibuteValue(const UObject* WorldContextObject,
 
 FString UELEOSUtility::GetPlatformAttibuteName(const UObject* WorldContextObject, EPlatformType Platform) {
     return TEXT("");
+}
+
+void UELEOSUtility::GetOnlineNewsFilename(FString& NewsFilename) {
 }
 
 int32 UELEOSUtility::GetNowPlayerCount(const UObject* WorldContextObject) {
@@ -476,6 +496,10 @@ EExternalAccountType UELEOSUtility::ConvertPlatformTypeToExternalAccountType(EPl
 }
 
 void UELEOSUtility::CheckUsingMultiplayerFeatures(const UObject* WorldContextObject) {
+}
+
+bool UELEOSUtility::CheckPartyAttributeGameMode(const UObject* WorldContextObject, UEOSCommunityInfoBase* CommunityInfo, const FString& Mode) {
+    return false;
 }
 
 void UELEOSUtility::ApplyWrestlerNameText(const UObject* WorldContextObject, UObject* OnlineWrestlerData, const FWrestlerNameText& WrestlerName) {

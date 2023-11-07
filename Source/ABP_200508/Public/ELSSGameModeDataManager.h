@@ -55,6 +55,9 @@ public:
     void SetSSTempPlayerNetworkID(const FString& pid);
     
     UFUNCTION(BlueprintCallable)
+    void SetSSRankingData(int32 InRank);
+    
+    UFUNCTION(BlueprintCallable)
     void SetPlayerEquipSettings(const FSSPlayerEquipSettings& inEquipData);
     
     UFUNCTION(BlueprintCallable)

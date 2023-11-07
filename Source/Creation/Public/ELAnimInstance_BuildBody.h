@@ -101,8 +101,7 @@ public:
     void UpdateParam(const bool bForce);
     
     virtual void PostInitProperties() override;
-
-
+    
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
     void OnUpdateState();
     

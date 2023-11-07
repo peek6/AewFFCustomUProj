@@ -3,6 +3,7 @@
 #include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
 #include "AttireData.h"
+#include "AttireExParam.h"
 #include "AttireParam.h"
 #include "CostumeParam.h"
 #include "EBasicWrestlerIntParamType.h"
@@ -187,6 +188,9 @@ public:
     void SetNickName(const FString& NickName);
     
     UFUNCTION(BlueprintCallable)
+    void SetEditAttireExParam(const EPreviewAttire AttireType, const FAttireExParam& NewParam, int32 PresetNo);
+    
+    UFUNCTION(BlueprintCallable)
     void SetCurrentAttireType(const EAttireType NewValue);
     
     UFUNCTION(BlueprintCallable)
@@ -200,6 +204,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void ResetPreviewAttire();
+    
+    UFUNCTION(BlueprintCallable)
+    void ResetPersonParam();
     
     UFUNCTION(BlueprintCallable)
     void ResetModify();

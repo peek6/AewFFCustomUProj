@@ -59,5 +59,6 @@ USaveData_GameSystem::USaveData_GameSystem() {
     this->m_Account_DisableCrossPlay = false;
     this->m_MenuOption_AutoLoadTransitionMode = false;
     this->m_System_GameTitleVersionName = TEXT("1.0");
+    this->m_News_LatestVersion = 0;
 }
 

@@ -33,6 +33,9 @@ public:
     FStWeaponSingleMotion Montage_JumpOver;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FStWeaponSingleMotion Montage_JumpOver_Long;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FStWeaponSingleMotion Montage_RopeRebound;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))

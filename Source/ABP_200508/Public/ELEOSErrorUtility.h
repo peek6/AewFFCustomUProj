@@ -12,10 +12,19 @@ class UELEOSErrorUtility : public UBlueprintFunctionLibrary {
 public:
     UELEOSErrorUtility();
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    static int32 CreateEOSSessionShortErrorCodeNumber(const EELEOSSessionErrorType errType);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     static FString CreateEOSSessionErrorCode(const EELEOSSessionErrorType errType);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    static int32 CreateEOSOnlineShortErrorCodeNumber(const int32 errID, const EELEOSApiType apiType);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     static FString CreateEOSOnlineErrorCode(const int32 errID, const EELEOSApiType apiType);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static int32 CreateEOSLoginShortErrorCodeNumber(const EELEOSLoginErrorType errType);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static FString CreateEOSLoginErrorCode(const EELEOSLoginErrorType errType);

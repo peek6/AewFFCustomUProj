@@ -50,6 +50,10 @@ bool UELUnlockableItemManagerBase::IsUpdatedUnlockData() {
     return false;
 }
 
+bool UELUnlockableItemManagerBase::IsUnlockingItem(int32 _targetId) const {
+    return false;
+}
+
 void UELUnlockableItemManagerBase::GetUnlockableItemSaveDataFromIdList(TArray<int32> _targetItemIdList, TArray<FELUnlockItemSaveData>& ResultList) {
 }
 

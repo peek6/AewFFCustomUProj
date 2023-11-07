@@ -49,6 +49,7 @@ float UELMomentumMeterBase::GetMeterPercent_N() const {
 void UELMomentumMeterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     
+    DOREPLIFETIME(UELMomentumMeterBase, MeterValue_N);
     DOREPLIFETIME(UELMomentumMeterBase, bExciteState);
     DOREPLIFETIME(UELMomentumMeterBase, bSpecialState);
     DOREPLIFETIME(UELMomentumMeterBase, bDangerState);

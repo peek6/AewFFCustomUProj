@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "AttireExParam.h"
 #include "AttireParam.h"
 #include "BodyAdjustParam.h"
 #include "CostumeParam.h"
@@ -27,6 +28,7 @@
 #include "EWrestlerDataGamePlayFlag.h"
 #include "MyWrestlerDataObject.generated.h"
 
+class UDataTable;
 class UMyWrestlerDataObject;
 class UObject;
 class UTexture;
@@ -81,6 +83,9 @@ public:
     
     UMyWrestlerDataObject();
     UFUNCTION(BlueprintCallable)
+    void UpdatePresetAttireExParamForDLCLocking(bool IsEntrance, int32 PresetIndex, const FAttireExParam& AttireExParam);
+    
+    UFUNCTION(BlueprintCallable)
     void UpdatePreset(const int32 Index, const FPresetParam& NewParam);
     
     UFUNCTION(BlueprintCallable)
@@ -117,6 +122,9 @@ public:
     void SetDefaultAttire(const FAttireParam& Attire);
     
     UFUNCTION(BlueprintCallable)
+    void ResetPersonParam();
+    
+    UFUNCTION(BlueprintCallable)
     void ResetDefaultScout(const EGender Gender);
     
     UFUNCTION(BlueprintCallable)
@@ -124,6 +132,12 @@ public:
     
     UFUNCTION(BlueprintCallable)
     bool RemovePreset(const int32 Index);
+    
+    UFUNCTION(BlueprintCallable)
+    void RemoveLockedPartsFromScout(UDataTable* EditPartsTable, UDataTable* EditPaintTable);
+    
+    UFUNCTION(BlueprintCallable)
+    void RemoveLockedPartsFromRoster(UDataTable* EditPartsTable, UDataTable* EditPaintTable);
     
     UFUNCTION(BlueprintCallable)
     void RemoveGamePlayFlag(const EWrestlerDataGamePlayFlag Flag);
@@ -246,6 +260,9 @@ public:
     void GetHomeTown(FHomeTownID& Out) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    FText GetHeightWeightClaims() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     FText GetHeightText() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -270,7 +287,7 @@ public:
     void GetCloneObject(UMyWrestlerDataObject*& Out, UObject* NewOuter);
     
     UFUNCTION(BlueprintCallable)
-    FText GetBirthDayText();
+    FText GetBirthDayText(bool isHideBirthDay);
     
     UFUNCTION(BlueprintCallable)
     void GetBirthDay(int32& Month, int32& Day);
@@ -300,6 +317,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     static UMyWrestlerDataObject* CreateNewWrestlerDataObject(const FGuid CreateUID);
+    
+    UFUNCTION(BlueprintCallable)
+    static UMyWrestlerDataObject* CreateGuestRosterDataObject(const FRosterInfoParam& Param);
     
     UFUNCTION(BlueprintCallable)
     static UMyWrestlerDataObject* CreateDefaultRosterDataObject(const FRosterInfoParam& Param);

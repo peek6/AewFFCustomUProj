@@ -160,6 +160,18 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ReserveActionRemainTime;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FVector AdjustedLocationDiff;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FVector MovedLocationBeforeAdjust;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FVector> VeloSavedLocations;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<float> VeloSavedDeltaTimes;
+    
 public:
     AELSSHorse();
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
@@ -252,8 +264,8 @@ public:
     AELSSPlayer* GetVehicleOwner() const;
     
 private:
-    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void GetOff_Multicast(AELSSPlayer* Player);
+    UFUNCTION(NetMulticast, Reliable)
+    void GetOff_Multicast(AELSSPlayer* Player, uint32 TransitId);
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)

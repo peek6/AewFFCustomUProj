@@ -15,9 +15,6 @@ void ASyncMotionMontage::SetEnableUpdateTransform(int32 CharaIndex, bool bEnable
 void ASyncMotionMontage::SetEnableSweepAfterSyncOff(int32 CharaIndex, bool bEnable) {
 }
 
-void ASyncMotionMontage::SetBasePointLocationTeleport(const FVector& NewLocation) {
-}
-
 void ASyncMotionMontage::SetBasePointLocationAndRotation(const FVector& NewLocation, const FRotator& NewRotation) {
 }
 

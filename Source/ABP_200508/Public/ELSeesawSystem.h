@@ -32,9 +32,6 @@ protected:
 public:
     UELSeesawSystem();
     UFUNCTION(BlueprintCallable)
-    void SetStateType_N(ESeesawRelationType_N NewStateType);
-    
-    UFUNCTION(BlueprintCallable)
     void SetBuffType_N(ESeesawBuffType_N NewBuffType);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)

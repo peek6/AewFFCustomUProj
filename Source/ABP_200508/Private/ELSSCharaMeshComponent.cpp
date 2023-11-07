@@ -10,5 +10,6 @@ UELSSCharaMeshComponent::UELSSCharaMeshComponent() {
     this->InterpMoveMode = false;
     this->bDisableInterpMove = false;
     this->bInitializingInterpMove = false;
+    this->bPerformCharacterMovement = false;
 }
 

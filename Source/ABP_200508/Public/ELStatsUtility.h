@@ -84,7 +84,7 @@ public:
     static int32 MaxGlobalStat(const UObject* WorldContextObject, EELGlobalStat Stat, int32 Value);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
-    static bool IngestDisconnectionStats(const UObject* WorldContextObject);
+    static bool IngestDisconnectionStats(const UObject* WorldContextObject, int32 LeaderboardRank);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static int32 IngestDirtyStats(const UObject* WorldContextObject);

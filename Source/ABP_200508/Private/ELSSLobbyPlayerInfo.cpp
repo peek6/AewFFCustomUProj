@@ -3,6 +3,7 @@
 FELSSLobbyPlayerInfo::FELSSLobbyPlayerInfo() {
     this->playerStampedeRankPoint = 0;
     this->playerPlayerRankPoint = 0;
+    this->playerPlayerRanking = 0;
     this->playerIconSymbolId = 0;
     this->playerIconBgId = 0;
     this->playerIconColorId = 0;

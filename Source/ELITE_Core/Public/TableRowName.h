@@ -26,4 +26,3 @@ FORCEINLINE uint32 GetTypeHash(const  FTableRowName& This)
     const uint32 Hash = FCrc::MemCrc32(&This, sizeof(FTableRowName));
     return Hash;
 }
-

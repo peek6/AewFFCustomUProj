@@ -15,6 +15,9 @@ public:
     static void StartActivity(const FString& ActivityId);
     
     UFUNCTION(BlueprintCallable)
+    static void SetReceivedGameIntentDuringConversion(const bool bIsReceivedGameIntentDuringConversion);
+    
+    UFUNCTION(BlueprintCallable)
     static void SetGameIntentScenario(const FString& scenarioActivityId);
     
     UFUNCTION(BlueprintCallable)
@@ -37,6 +40,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsExistCustomData();
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool GetIsReceivedGameIntentDuringConversion();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static void GetGameIntentScenario(bool& isGameIntent, ECareerScenario& Scenario);

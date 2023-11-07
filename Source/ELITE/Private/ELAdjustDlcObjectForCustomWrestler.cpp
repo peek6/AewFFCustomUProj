@@ -12,6 +12,9 @@ void UELAdjustDlcObjectForCustomWrestler::InitCheckList_Implementation(const FUn
 UELAdjustDlcObjectForCustomWrestler::UELAdjustDlcObjectForCustomWrestler() {
     this->Template_M01_Object = NULL;
     this->Template_F01_Object = NULL;
+    this->Roster_NormalTable = NULL;
+    this->Roster_SignatureTable = NULL;
+    this->Roster_FinisherTable = NULL;
     this->MovesAdjust = NULL;
 }
 
