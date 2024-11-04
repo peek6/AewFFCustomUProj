@@ -149,11 +149,15 @@ bool UELEOSManager::IsValidAntiCheatClient() const {
     return false;
 }
 
+bool UELEOSManager::IsValidAntiCheatAll() const {
+    return false;
+}
+
 bool UELEOSManager::IsRunningLoginFlow() {
     return false;
 }
 
-bool UELEOSManager::IsOnline() const {
+bool UELEOSManager::IsOnline(bool bSkipEOS) const {
     return false;
 }
 
@@ -166,6 +170,10 @@ bool UELEOSManager::IsExecuteSetupStep() const {
 }
 
 bool UELEOSManager::IsEOSLogin() const {
+    return false;
+}
+
+bool UELEOSManager::IsCompletedSetupStep() const {
     return false;
 }
 
@@ -183,8 +191,16 @@ FString UELEOSManager::GetTitleStorageOnlineVersion() {
     return TEXT("");
 }
 
+UELEOSTitleStorageDownloadProgress* UELEOSManager::GetTitleStorageDownloadProgress() const {
+    return NULL;
+}
+
 UEOSTitleStorage* UELEOSManager::GetTitleStorage() const {
     return NULL;
+}
+
+bool UELEOSManager::GetQuitGameOnFailedEAC() {
+    return false;
 }
 
 float UELEOSManager::GetP2PTimeoutLatency() const {
@@ -423,6 +439,8 @@ UELEOSManager::UELEOSManager() {
     this->EOSSanctions = NULL;
     this->EOSVoice = NULL;
     this->EOSTitleStorage = NULL;
+    this->ELEOSTitleStorageProgress = NULL;
+    this->ELEOSTitleStorageProgressRequireFiles = NULL;
     this->EOSApiBase = NULL;
     this->ELOnlineNews = NULL;
     this->ELEOSGameSessionMatching = NULL;
@@ -433,7 +451,7 @@ UELEOSManager::UELEOSManager() {
     this->LastGeneralEvent = EEOSGeneralEvent::Success;
     this->LastGeneralErrorEvent = EEOSGeneralEvent::Success;
     this->ExternalLoginUserControllerId = -1;
-    this->bUseEAS = true;
+    this->bUseEAS = false;
     this->bAutoLinkEAS = false;
     this->NetworkObserver = NULL;
     this->ELEOSDebug = NULL;

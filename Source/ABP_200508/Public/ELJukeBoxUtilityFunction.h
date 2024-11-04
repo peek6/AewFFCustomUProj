@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "JukeBoxMenuInfo_N.h"
 #include "JukeBoxParam.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "ELTmpJukeboxSaveData.h"
@@ -16,6 +17,9 @@ public:
     UELJukeBoxUtilityFunction();
     UFUNCTION(BlueprintCallable)
     static void UpdateJukeboxSaveData(uint8 _saveDataAccessFlag);
+    
+    UFUNCTION(BlueprintCallable)
+    static void SortJukeBoxAtoZ(UPARAM(Ref) TArray<FJukeBoxMenuInfo_N>& Params);
     
     UFUNCTION(BlueprintCallable)
     static void SetRandomPlaybackCore(FELTmpJukeboxSaveData& _stJukebox, bool _random);

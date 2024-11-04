@@ -17,9 +17,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 MovesIndex;
-
-    FELMoves_Finisher_Part();
     
+    FELMoves_Finisher_Part();
+
     FELMoves_Finisher_Part(const FELMoves_Finisher_Part& Other);
 
     bool operator==(const  FELMoves_Finisher_Part& Other) const;
@@ -28,8 +28,6 @@ public:
 
     bool Equals(const  FELMoves_Finisher_Part& Other) const;
 
-
-
 };
 
 FORCEINLINE uint32 GetTypeHash(const  FELMoves_Finisher_Part& This)
@@ -37,8 +35,5 @@ FORCEINLINE uint32 GetTypeHash(const  FELMoves_Finisher_Part& This)
     const uint32 Hash = FCrc::MemCrc32(&This, sizeof(FELMoves_Finisher_Part));
     return Hash;
 }
-
-
-//FORCEINLINE uint32 GetTypeHash(const  FELMoves_Finisher_Part& This);
 
 

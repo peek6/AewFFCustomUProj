@@ -72,6 +72,8 @@ enum class yEnMenuWidgetType : uint8 {
     DisconnectedGamepad,
     BootScreen,
     TutorialCommon,
+    MainMenuTournamentSelect,
+    TournamentProgress,
     Max,
 };
 

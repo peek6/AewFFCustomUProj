@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "AttireExData.h"
 #include "EEditPartsSlot.h"
 #include "EEditTexTarget.h"
 #include "EditPaintData.h"
@@ -15,6 +16,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<EEditTexTarget, FEditPaintData> Paints;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FAttireExData AttireEx;
     
     FAttireData();
 };

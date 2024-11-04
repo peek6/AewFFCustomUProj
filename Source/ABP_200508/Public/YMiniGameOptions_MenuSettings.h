@@ -8,6 +8,7 @@
 #include "CheckQuizTextDispatcherDelegate.h"
 #include "CheckTextureDispatcherDelegate.h"
 #include "ChipRequestDispatcherDelegate.h"
+#include "DamageChallengeShowAnnounceTimeDelegate.h"
 #include "DispCorrectDispatcherDelegate.h"
 #include "HideCorrectDispatcherDelegate.h"
 #include "OneShotDestroyDispatcherDelegate.h"
@@ -98,6 +99,9 @@ public:
     
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSlothSlingDispLandPoint landPointDisplayDispathcer;
+    
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FDamageChallengeShowAnnounceTime showAnnounceTimeDispatcher;
     
     UYMiniGameOptions_MenuSettings();
 };

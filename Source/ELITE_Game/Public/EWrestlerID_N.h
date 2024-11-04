@@ -89,6 +89,11 @@ enum class EWrestlerID_N : uint8 {
     NPC_JoinUs_B,
     NPC_JoinUs_C,
     NPC_JoinUs_D,
+    Danhausen,
+    Hook,
+    AnthonyBowens,
+    MaxCaster,
+    ToniStorm,
     EWrestlerID_MAX UMETA(Hidden),
 };
 

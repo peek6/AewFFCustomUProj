@@ -9,7 +9,7 @@ void UYAutoPlay_DebugMenu::SetStartRecPadInfo(bool _bStart) {
 void UYAutoPlay_DebugMenu::SetStartAutoPlay(bool _bStart) {
 }
 
-void UYAutoPlay_DebugMenu::SetResultText(const FString& _Text) {
+void UYAutoPlay_DebugMenu::SetResultText(const FString& _text) {
 }
 
 void UYAutoPlay_DebugMenu::SetPauseAutoPlay(bool _bPause) {
@@ -80,7 +80,7 @@ int32 UYAutoPlay_DebugMenu::GetAutoPlayDTFileIndex() {
     return 0;
 }
 
-void UYAutoPlay_DebugMenu::AddResultText(const FString& _Text) {
+void UYAutoPlay_DebugMenu::AddResultText(const FString& _text) {
 }
 
 UYAutoPlay_DebugMenu::UYAutoPlay_DebugMenu() {

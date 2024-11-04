@@ -97,6 +97,9 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsUpdatedUnlockData();
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsUnlockingItem(int32 _targetId) const;
+    
     UFUNCTION(BlueprintCallable)
     void GetUnlockableItemSaveDataFromIdList(TArray<int32> _targetItemIdList, TArray<FELUnlockItemSaveData>& ResultList);
     

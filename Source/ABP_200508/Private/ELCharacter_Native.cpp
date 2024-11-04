@@ -5,6 +5,7 @@
 #include "Net/UnrealNetwork.h"
 #include "Templates/SubclassOf.h"
 
+
 void AELCharacter_Native::UpdateUpperBodyBlend(TArray<FStUpperBodyBlendUpdateInfo>& InfoArray, const TArray<FStFEquipPassiveSkillData>& EquipArray, const FStPassiveSkillSrcParam& SrcParam, const float TickDeltaSeconds, const bool CanMotion, const float CoreHP, const float HeadHP, const float ArmHP, const float BodyHP, const float LegHP, const float Momentum, const bool SpecialState, const bool DiveSkill, const bool FenceSkill, const bool TopeconSkill, const bool ExplodingMatch, const bool CanNaviOperate, const bool RingInOutOperate, const bool EnviromentOperate, const bool TargetRing, const bool SelfRing, const bool DirectionReverse, int32& InLastUseUpperBodyBlendIndex, bool& Enable) const {
 }
 
@@ -19,9 +20,6 @@ void AELCharacter_Native::UpdateReserveReversal_N(const int32 AtkPlayerIndex, co
 
 
 void AELCharacter_Native::UpdateBothAOnHit_N(const FStAOnDamage& AOnDamage, TArray<AELCharacter_Native*>& DefPlayer) {
-}
-
-void AELCharacter_Native::UnbindDynamicMaterial(USkeletalMeshComponent* SkeletalMeshComponent) {
 }
 
 void AELCharacter_Native::TutorialEndEvent() {
@@ -144,11 +142,10 @@ void AELCharacter_Native::Tick_ObserveTagRingInAuthority_N_Implementation() {
 
 
 
-void AELCharacter_Native::StartRopeIK_N(UCableComponent* Rope, bool bBoth, bool bRightOnly, float BlendSec, float MaxBlendRate) {
+void AELCharacter_Native::SpawnSyncMotionMontage(TEnumAsByte<ECollisionChannel> Channel, TArray<AELCharacter_Native*>& SyncCharArray, const FVector& SyncLocation, const FRotator& SyncRotation, const ESyncPosRotKind SyncPosKind, const ESyncPosRotKind SyncRotKind, float Interpolate, bool bIgnoreSweep, bool bNoSyncRotation, int32 Priority, bool useCharacterHeight) {
 }
 
-
-void AELCharacter_Native::SpawnSyncMotionMontage(TEnumAsByte<ECollisionChannel> Channel, TArray<AELCharacter_Native*>& SyncCharArray, const FVector& SyncLocation, const FRotator& SyncRotation, const ESyncPosRotKind SyncPosKind, const ESyncPosRotKind SyncRotKind, float Interpolate, bool bIgnoreSweep, bool bNoSyncRotation, int32 Priority, bool useCharacterHeight) {
+void AELCharacter_Native::SpawnCurseEmitter(UParticleSystem* CurseEmitter) {
 }
 
 void AELCharacter_Native::ShowSkeletalMeshMaterials_Implementation(USkeletalMeshComponent* Target, const TArray<FName>& TargetMaterialNames, const bool bShow) {
@@ -160,12 +157,14 @@ void AELCharacter_Native::SetWrestlerProfile(const FELWrestlerProfile& InWrestle
 void AELCharacter_Native::SetWorkHipOffsetForCutscene(bool Flag) {
 }
 
-void AELCharacter_Native::SetVectorParameterForMID(const FName ParameterName, const FVector& NewValue, const FName Specific) {
-}
 
 void AELCharacter_Native::SetupPreset(EBasicFunctionResult& Result, const FPersonParam& PersonParam, const FPresetParam& PresetParam, const FAttireParam ExtraParts, const bool bEntrance) {
 }
 
+
+bool AELCharacter_Native::SetupCurseSystemParam(bool NoCheckUnlock) {
+    return false;
+}
 
 void AELCharacter_Native::SetupCharacter(EBasicFunctionResult& Result, const FWrestlerSetupParam& SetupParam, const FAttireParam ExtraParts, const bool bEntrance, const bool bSpecificEntrance) {
 }
@@ -174,9 +173,6 @@ void AELCharacter_Native::SetupBarrierCollisionOverlapEventBind() {
 }
 
 void AELCharacter_Native::SetTouchLeaveRing(bool Flag) {
-}
-
-void AELCharacter_Native::SetTextureParameterForMID(const FName ParameterName, UTexture* NewTexture, const FName Specific) {
 }
 
 void AELCharacter_Native::SetSyncMotionAnyChar_N(TArray<AELCharacter_Native*>& SyncCharArray, ASyncMotionMontage*& NewSyncMotion) {
@@ -203,9 +199,6 @@ void AELCharacter_Native::SetLadderMiniGameForceSuccess(bool Flag) {
 void AELCharacter_Native::SetIsThreadTickAsync(bool isThread) {
 }
 
-void AELCharacter_Native::SetIgnoreActorWhenMoving_N(const TArray<AActor*>& IgnoreSweepActorArray, const bool bShouldIgnore) {
-}
-
 void AELCharacter_Native::SetHipOffsetForCutscene(FVector Offset) {
 }
 
@@ -214,10 +207,16 @@ void AELCharacter_Native::SetHipOffsetForCutscene(FVector Offset) {
 void AELCharacter_Native::SetEnableSyncBarrierCollision(bool Enabled) {
 }
 
+void AELCharacter_Native::SetEditAttireExParam(const FAttireExParam Param) {
+}
+
 void AELCharacter_Native::SetDeferredUpdateYaw(float Yaw, UAnimMontage* targetMontage) {
 }
 
 void AELCharacter_Native::SetDeferredUpdateDeltaLocation(const FVector& Delta, UAnimMontage* targetMontage) {
+}
+
+void AELCharacter_Native::SetDebugCurseParam_Apply(const FStDebugOverrideCurseParam& DebugCurseParam, bool bNoCheckDLC) {
 }
 
 void AELCharacter_Native::SetDeadReason(EELMatchResultType Type) {
@@ -226,7 +225,7 @@ void AELCharacter_Native::SetDeadReason(EELMatchResultType Type) {
 void AELCharacter_Native::SetDamageReaction_CurrentMontage_N() {
 }
 
-void AELCharacter_Native::SetComponentsRelativeScale(const TArray<USceneComponent*>& Targets, FVector NewScale) {
+void AELCharacter_Native::SetCurseSystemParam(FName RowName) {
 }
 
 void AELCharacter_Native::SetCollisionsEnabled(const TArray<UPrimitiveComponent*>& Targets, TEnumAsByte<ECollisionEnabled::Type> NewEnabled) {
@@ -250,7 +249,11 @@ void AELCharacter_Native::SetAttackCollisionListScale_N(const float Scale) {
 void AELCharacter_Native::SetAttackCollisionEnable_N(const int32 Type, const bool Enable) {
 }
 
+
 void AELCharacter_Native::S_StopUpperBodyBlendMotion_N_Implementation() {
+}
+
+void AELCharacter_Native::S_SetTick_N_Implementation(float LS_Forward, float LS_Right, float RS_Forward, float RS_Right, const FVector& InOut, float WalkSpeed, float Yaw) {
 }
 
 void AELCharacter_Native::S_PlayUpperBodyBlendMotion_N_Implementation(UAnimSequence* AnimSequence) {
@@ -262,13 +265,8 @@ void AELCharacter_Native::S_AddActorWorldRotation_N_Implementation(const FRotato
 void AELCharacter_Native::S_AddActorWorldOffset_N_Implementation(const FVector& AddLocation, const bool bSweep, const bool bTeleport) {
 }
 
-void AELCharacter_Native::ResetWeaponDiffHeight() const {
-}
 
 
-
-void AELCharacter_Native::ResetMeshMaterials() {
-}
 
 bool AELCharacter_Native::ResetForceSyncMovement_Implementation() {
     return false;
@@ -277,10 +275,15 @@ bool AELCharacter_Native::ResetForceSyncMovement_Implementation() {
 void AELCharacter_Native::ResetCostume() {
 }
 
+
 void AELCharacter_Native::RequestTutorial_N(FName TutorialName) {
 }
 
 
+
+
+void AELCharacter_Native::PlayMontageCore_N(UAnimMontage*& Montage, const FString& Section, float InTimeToStartMontageAt, bool bInitMovementMode, float DelayClearMoveIgnoreActors) {
+}
 
 
 
@@ -325,6 +328,9 @@ void AELCharacter_Native::OnMeterValuePenaltyEvent_N(float PenaltyRate) {
 void AELCharacter_Native::OnDamageHPEvent_N(AELCharacter_Native* AtkPlayer, float DamageHead, float DamageArm, float DamageBody, float DamageLeg) {
 }
 
+void AELCharacter_Native::OnCurseEvent_N(float InDuration) {
+}
+
 
 
 void AELCharacter_Native::OnChangedTrainingReversalKind(ETrainingReversalKind Kind) {
@@ -333,21 +339,34 @@ void AELCharacter_Native::OnChangedTrainingReversalKind(ETrainingReversalKind Ki
 void AELCharacter_Native::OnChangedLastHitMovesSituationIndex(int32 MovesSituationIndex) {
 }
 
+void AELCharacter_Native::OnApplyAttireExToSkin_Implementation(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, bool bApplyDarkSkinMode) {
+}
+
+void AELCharacter_Native::OnApplyAttireExToHair_Implementation(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyHairColor, UTexture2D* HairColorTexture, bool bApplyDarkSkinMode) {
+}
+
+void AELCharacter_Native::OnApplyAttireExtoEye_Implementation(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, FLinearColor EyeColor, float EyeEmissivePower) {
+}
+
+void AELCharacter_Native::OnApplyAttireExtoAttire_Implementation(EWrestlerID_N WrestlerID, USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, bool bApplyPatternTexture, UTexture2D* PatternTexture, bool bApplyDarkSkinMode) {
+}
+
+void AELCharacter_Native::OnApplyAttireEx_Implementation(EWrestlerID_N WrestlerID, bool bApplyToLeftEye, UMaterialInterface* LeftEyeMaterial, FLinearColor LeftEyeColor, float LeftEyeEmissivePower, bool bApplyToRightEye, UMaterialInterface* RightEyeMaterial, FLinearColor RightEyeColor, float RightEyeEmissivePower, bool bApplyToHair, UTexture2D* HairColorTexture, bool bApplyDarkSkinModeToHair, bool bApplyToSkin, UMaterialInterface* SkinMaterial, bool bApplyDarkSkinModeToSkin, bool bApplyToAttire, UMaterialInterface* AttireMaterial, bool bApplyPatternTextureToAttire, UTexture2D* AttirePatternTexture, bool bApplyDarkSkinModeToAttire, const TMap<uint8, bool>& PartsApplyList) {
+}
+
+
 
 
 void AELCharacter_Native::M_SetDeferredUpdateYawMainMontage_N_Implementation(float Yaw) {
 }
 
-void AELCharacter_Native::M_SetDeferredUpdateYaw_N_Implementation(float Yaw, UAnimMontage* Montage) {
+void AELCharacter_Native::M_SetActorRotation_N_Implementation(const FRotator& NewRotation, const bool bTeleport, bool bCheckSync) {
 }
 
-void AELCharacter_Native::M_SetActorRotation_N_Implementation(const FRotator& NewRotation, const bool bTeleport) {
+void AELCharacter_Native::M_SetActorLocationAndRotation_N_Implementation(const FVector& NewLocation, const FRotator& NewRotation, const bool bSweep, const bool bTeleport, bool bCheckSync) {
 }
 
-void AELCharacter_Native::M_SetActorLocationAndRotation_N_Implementation(const FVector& NewLocation, const FRotator& NewRotation, const bool bSweep, const bool bTeleport) {
-}
-
-void AELCharacter_Native::M_SetActorLocation_N_Implementation(const FVector& NewLocation, const bool bSweep, const bool bTeleport) {
+void AELCharacter_Native::M_SetActorLocation_N_Implementation(const FVector& NewLocation, const bool bSweep, const bool bTeleport, bool bCheckSync) {
 }
 
 void AELCharacter_Native::LadderMatchMiniGameStartServer_Implementation(int32 StartProgress, UAnimMontage* GrabLoopMontage) {
@@ -421,9 +440,6 @@ bool AELCharacter_Native::IsTableTopDown_N() const {
 
 bool AELCharacter_Native::IsSystemChar_N() const {
     return false;
-}
-
-void AELCharacter_Native::IsSyncWith_N(const ACharacter* Chara, bool& bValue) const {
 }
 
 bool AELCharacter_Native::IsSyncMainSlot_N() const {
@@ -517,7 +533,15 @@ bool AELCharacter_Native::IsRingToApronChain_N() const {
     return false;
 }
 
+bool AELCharacter_Native::IsRingToApron_N() const {
+    return false;
+}
+
 bool AELCharacter_Native::IsRingSideToApron_N() const {
+    return false;
+}
+
+bool AELCharacter_Native::IsRingOutOrRingToApron_N() const {
     return false;
 }
 
@@ -590,10 +614,6 @@ bool AELCharacter_Native::IsOutOfSyncMovement_Implementation() const {
 }
 
 bool AELCharacter_Native::IsObstructionMotion_N() const {
-    return false;
-}
-
-bool AELCharacter_Native::IsNoAbilityReactionMotion_N() const {
     return false;
 }
 
@@ -683,12 +703,20 @@ bool AELCharacter_Native::IsIWThrow_N() const {
     return false;
 }
 
+bool AELCharacter_Native::IsIrishWhipRunStateOverTheTopRope_N(bool bCheckOnlyMontage) const {
+    return false;
+}
+
 bool AELCharacter_Native::IsIrishWhipRunState_N(bool bCheckOnlyMontage) const {
     return false;
 }
 
 
 bool AELCharacter_Native::IsIdleMotion_N() const {
+    return false;
+}
+
+bool AELCharacter_Native::IsHitAOnInLimitRange(AELCharacter_Native* Target) const {
     return false;
 }
 
@@ -754,7 +782,11 @@ bool AELCharacter_Native::IsEnableTutorial() const {
     return false;
 }
 
-bool AELCharacter_Native::IsEnableSyncBarrierCollision() {
+bool AELCharacter_Native::IsEnableSyncBarrierCollision() const {
+    return false;
+}
+
+bool AELCharacter_Native::IsEnableSpawnCursePerformer_N() {
     return false;
 }
 
@@ -886,6 +918,10 @@ bool AELCharacter_Native::IsEnableRule_AnywherePin_N() {
 void AELCharacter_Native::IsEnablePassiveSkillSituation_N(const FStFEquipPassiveSkillData& EquipData, const FStPassiveSkillSrcParam& SrcParam, bool& Enable, bool& TimerEffect, float& TimerRemain) const {
 }
 
+bool AELCharacter_Native::IsEnableHitColGenerateOverlapEvent() {
+    return false;
+}
+
 bool AELCharacter_Native::IsEnableHeightAdjust_N() const {
     return false;
 }
@@ -896,6 +932,10 @@ bool AELCharacter_Native::IsEnableAOn_N() const {
 }
 
 bool AELCharacter_Native::IsEnableActionSkill_N(EActionSkillType Type) const {
+    return false;
+}
+
+bool AELCharacter_Native::IsEcistGuardBreakSkill_Impl(const FRandomStream& RandStream) {
     return false;
 }
 
@@ -959,6 +999,10 @@ bool AELCharacter_Native::IsDamageReaction_N() const {
     return false;
 }
 
+bool AELCharacter_Native::IsCurseMotion_N() const {
+    return false;
+}
+
 bool AELCharacter_Native::IsCornerTopOrRiseMotion_N() const {
     return false;
 }
@@ -986,6 +1030,7 @@ bool AELCharacter_Native::IsCornerGroggy_N() const {
 bool AELCharacter_Native::IsCornerChain_N(bool& bFront) const {
     return false;
 }
+
 
 bool AELCharacter_Native::IsChainWrestlingLoop_N() const {
     return false;
@@ -1018,6 +1063,14 @@ bool AELCharacter_Native::IsBlockPose_N() const {
 }
 
 bool AELCharacter_Native::IsBlockLoopPose_N() const {
+    return false;
+}
+
+bool AELCharacter_Native::IsBigman_N() const {
+    return false;
+}
+
+bool AELCharacter_Native::IsBeginStandChainGrapple_N() {
     return false;
 }
 
@@ -1074,6 +1127,9 @@ bool AELCharacter_Native::IsAIController_N() const {
     return false;
 }
 
+void AELCharacter_Native::InitAnimationParam_N(UAnimMontage*& Montage, bool bInitMovementMode, float DelayClearMoveIgnoreActors) {
+}
+
 
 FELWrestlerProfile AELCharacter_Native::GetWrestlerProfile() const {
     return FELWrestlerProfile{};
@@ -1123,6 +1179,10 @@ void AELCharacter_Native::GetSocketTransform_N(const FName SocketName, const TEn
 
 
 
+FTransform AELCharacter_Native::GetRootMotionTransform() const {
+    return FTransform{};
+}
+
 bool AELCharacter_Native::GetRollOutDownState_N() const {
     return false;
 }
@@ -1159,10 +1219,6 @@ UELAnimInstance_PartIK* AELCharacter_Native::GetPartIK_N() {
 }
 
 AActor* AELCharacter_Native::GetOverlappingActorTag_N(TSubclassOf<AActor> ClassFilter, FName Tag) const {
-    return NULL;
-}
-
-AActor* AELCharacter_Native::GetOverlappingActor_N(TSubclassOf<AActor> ClassFilter) const {
     return NULL;
 }
 
@@ -1239,8 +1295,16 @@ FFootCtrlParam AELCharacter_Native::GetFootIKParam_N() {
     return FFootCtrlParam{};
 }
 
+FAttireExParam AELCharacter_Native::GetEditAttireExParam() const {
+    return FAttireExParam{};
+}
+
 bool AELCharacter_Native::GetDebugOption_Idle_N() const {
     return false;
+}
+
+ECurseType AELCharacter_Native::GetDebugCurseParam_EffectProbability(FName Type) {
+    return ECurseType::Nothing;
 }
 
 EELMatchResultType AELCharacter_Native::GetDeadReason() const {
@@ -1396,9 +1460,6 @@ bool AELCharacter_Native::ChangeMesh_Implementation(const FELWrestlerMeshParam W
     return false;
 }
 
-void AELCharacter_Native::ChangedTagWait(bool Flag) {
-}
-
 void AELCharacter_Native::CE_M_SetORMovement_N_Implementation(bool bValue) {
 }
 
@@ -1471,6 +1532,21 @@ void AELCharacter_Native::BindDynamicMaterial(USkeletalMeshComponent* SkeletalMe
 void AELCharacter_Native::BeginOverlap_HitCol_N(const AActor* OtherActor, UPrimitiveComponent* OtherComp) {
 }
 
+void AELCharacter_Native::ApplyAttireExToSkin(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, bool bApplyDarkSkinMode) {
+}
+
+void AELCharacter_Native::ApplyAttireExToHair(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyHairColor, UTexture2D* HairColorTexture, bool bApplyDarkSkinMode) {
+}
+
+void AELCharacter_Native::ApplyAttireExtoEye(USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, FLinearColor EyeColor, float EyeEmissivePower) {
+}
+
+void AELCharacter_Native::ApplyAttireExtoAttire(EWrestlerID_N WrestlerID, USkeletalMeshComponent* SkeletalMesh, int32 MaterialIndex, FName MaterialSlotName, bool bApplyMaterial, UMaterialInterface* SourceMaterial, bool bApplyPatternTexture, UTexture2D* PatternTexture, bool bApplyDarkSkinMode) {
+}
+
+void AELCharacter_Native::ApplyAttireEx(EWrestlerID_N WrestlerID, bool bApplyToLeftEye, UMaterialInterface* LeftEyeMaterial, FLinearColor LeftEyeColor, float LeftEyeEmissivePower, bool bApplyToRightEye, UMaterialInterface* RightEyeMaterial, FLinearColor RightEyeColor, float RightEyeEmissivePower, bool bApplyToHair, UTexture2D* HairColorTexture, bool bApplyDarkSkinModeToHair, bool bApplyToSkin, UMaterialInterface* SkinMaterial, bool bApplyDarkSkinModeToSkin, bool bApplyToAttire, UMaterialInterface* AttireMaterial, bool bApplyPatternTextureToAttire, UTexture2D* AttirePatternTexture, bool bApplyDarkSkinModeToAttire, const TMap<uint8, bool>& PartsApplyList) {
+}
+
 void AELCharacter_Native::AimTarget_N() {
 }
 
@@ -1514,6 +1590,8 @@ void AELCharacter_Native::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& 
     DOREPLIFETIME(AELCharacter_Native, HP_N);
     DOREPLIFETIME(AELCharacter_Native, LimbHP_N);
     DOREPLIFETIME(AELCharacter_Native, NavigationDirectionValue_N);
+    DOREPLIFETIME(AELCharacter_Native, bAtkDirtyMoves_N);
+    DOREPLIFETIME(AELCharacter_Native, WrestlerID_N);
     DOREPLIFETIME(AELCharacter_Native, PinMontage_N);
 }
 
@@ -1542,6 +1620,8 @@ AELCharacter_Native::AELCharacter_Native() {
     this->bEnableWeightDetection = false;
     this->InGameDuration = 0.00f;
     this->PlaceRing = false;
+    this->BeforeMoveForwardValue_N = 0.00f;
+    this->BeforeMoveRightValue_N = 0.00f;
     this->BeforeLeftStickForwardValue = 0.00f;
     this->BeforeLeftStickRIghtValue = 0.00f;
     this->bEnableReserveEnvironmentThrowReach = false;
@@ -1635,6 +1715,8 @@ AELCharacter_Native::AELCharacter_Native() {
     this->ControllerID_N = -1;
     this->bBattleRoyaleEntrance_N = false;
     this->bBattleRoyaleRingInRun_N = false;
+    this->Rope_R = NULL;
+    this->Rope_L = NULL;
     this->bBreakoutNavi_N = false;
     this->bBreakoutAttack_N = false;
     this->CheckTemporary_IsHandsInPocketMotion_Done_N = false;
@@ -1775,18 +1857,55 @@ AELCharacter_Native::AELCharacter_Native() {
     this->bPreEnableTagWaitRingInAuthority_N = false;
     this->bDisableDivingHoming = false;
     this->EnableSyncBarrierCollision = false;
+    this->CurseType = ECurseType::Nothing;
+    this->BarricadeCheck_TargetBarricade = NULL;
+    this->DefaultGravityScale_N = 1.00f;
+    this->DefaultWalkableFloorAngle_N = 0.00f;
+    this->bAtkDirtyMoves_N = false;
+    this->bEnablePushAOn_N = false;
+    this->bEnableOutsiderAOn_N = false;
+    this->UseRingEscapeCount_N = 0;
+    this->bIsRunByRunnningCounterSetup_N = false;
+    this->bIsPlayCurseAction_N = false;
+    this->bIsCurseActor_N = false;
+    this->bPickupCursePerformer_N = false;
+    this->CurseTauntTrrigetCount_N = 0;
+    this->bReserveResetMeshLocation_N = false;
+    this->RequestReplaySec_N = 0.00f;
+    this->bReserveVanishWeaponNextMotion_N = false;
+    this->bReserveDettachWeaponNextMotion_N = false;
+    this->LastPlayMontage_N = NULL;
+    this->bUseAfterExplosionDamageWalk_N = false;
+    this->MontagePlayRate_Navi_N = 1.00f;
+    this->MontagePlayRate_Anim_N = 1.00f;
+    this->SpeedMultiplyer_N = 1.00f;
+    this->WrestlerSkillMoveSpeedRate_N = 1.00f;
+    this->bSaveDefaultPoseSnapshot_N = false;
+    this->bForceAutoTracking = false;
+    this->bUseCutscene_N = false;
+    this->WrestlerID_N = EWrestlerID_N::None;
+    this->bIsAlreadyLotteryGuardBreakSkill_N = false;
+    this->bIsSuccessGuardBreakSkill_N = false;
+    this->RingToApronMontage_N = NULL;
+    this->AOnHitAngleLimit_N = -1.00f;
+    this->bBattleRoyaleAfterAI_N = false;
+    this->bIsWinScene_N = false;
+    this->bSkipResetMeshLocation = false;
     this->DQReactionObserveDuration_N = 0.00f;
     this->LastDQReactionPlayer_N = NULL;
     this->LastWeaponReactionPlayer_N = NULL;
     this->ClonedRefereeMeshComp = NULL;
     this->RefereeMeshMode = ERefereeMeshMode::Default;
     this->RefereeOpacityStateTimeCount = 0.00f;
+    this->AnimInstance_PartIK = NULL;
     this->TutorialInputEvent = NULL;
     this->DeferredUpdateTransformTargetMontage = NULL;
+    this->AllowBarrierCollisionOverlapExcuteComponent = NULL;
     this->PinMontage_N = NULL;
     this->BuildBody = CreateDefaultSubobject<UELBuildBody>(TEXT("BuildBody"));
     this->CustomCostumeClass = UELCostume::StaticClass();
     this->CustomCostume = CreateDefaultSubobject<UELCostume>(TEXT("CustomCostume"));
+    this->CurseTauntSystemTable = NULL;
     this->IsThreadTickAsync = true;
     this->BarrierCollisionOverlapWarpThreshold_Self = 0.00f;
     this->BarrierCollisionOverlapWarpThreshold_Other = 0.00f;

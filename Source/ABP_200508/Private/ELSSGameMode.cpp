@@ -185,6 +185,8 @@ AELSSGameMode::AELSSGameMode() {
     this->MatchLobbyTime = 0.00f;
     this->SSGameState = NULL;
     this->WaitJoinElapsedTime = 0.00f;
+    this->SavingAnalyticsTimer = 60.00f;
+    this->AnalyticsLog2YGS2Object = NULL;
     this->TitleStorageDownloadingTimeTotal = 0.00f;
     this->TitleStorageDownloadingTimeLimit = 60.00f;
     this->IsInitialized = false;

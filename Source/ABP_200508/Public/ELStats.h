@@ -29,8 +29,8 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UELYGS2Manager* YGS2Manager;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TMap<FString, FELStatDataCache> StatsMap;
+    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<uint32, FELStatDataCache> StatsMap;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bDirtySave;

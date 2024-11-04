@@ -9,5 +9,6 @@ UELSSFootIK::UELSSFootIK() {
     this->FootBoneName_R = TEXT("J_Foot_R");
     this->ActiveRangeFromCamera = 1000.00f;
     this->bPlayerDisabled = false;
+    this->LandingFootNum = 0;
 }
 

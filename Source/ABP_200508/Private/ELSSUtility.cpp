@@ -1,6 +1,10 @@
 #include "ELSSUtility.h"
 #include "Templates/SubclassOf.h"
 
+bool UELSSUtility::TryYGS2ResumeRequests(const UObject* WorldContextObject) {
+    return false;
+}
+
 void UELSSUtility::StopSSLoadingScreen() {
 }
 
@@ -48,6 +52,10 @@ void UELSSUtility::SetScreenUpdateCheck() {
 void UELSSUtility::SetInputMode(APlayerController* pController) {
 }
 
+bool UELSSUtility::RestartYGS2SetupStep(const UObject* WorldContextObject, bool inForceExec, bool inResetRequest) {
+    return false;
+}
+
 bool UELSSUtility::RequestDownloadSSModeServiceParam(const UObject* WorldContextObject, bool inSSModeOnly) {
     return false;
 }
@@ -71,6 +79,10 @@ void UELSSUtility::NotifySSGameStart(const UObject* WorldContextObject) {
 void UELSSUtility::NotifySSGameEnd(const UObject* WorldContextObject, ESSEndGameReason inReason) {
 }
 
+bool UELSSUtility::NeedsRestartYGS2SetupStep(const UObject* WorldContextObject) {
+    return false;
+}
+
 bool UELSSUtility::IsSSPlayableUser(const UObject* WorldContextObject) {
     return false;
 }
@@ -92,6 +104,10 @@ bool UELSSUtility::IsSSDebugLocalCheckMode() {
 }
 
 bool UELSSUtility::IsSSCheatDetected(const UObject* WorldContextObject) {
+    return false;
+}
+
+bool UELSSUtility::IsExecuteYGS2SetupStep(const UObject* WorldContextObject) {
     return false;
 }
 

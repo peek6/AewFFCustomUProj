@@ -19,7 +19,7 @@ public:
     void SetStartAutoPlay(bool _bStart);
     
     UFUNCTION(BlueprintCallable)
-    void SetResultText(const FString& _Text);
+    void SetResultText(const FString& _text);
     
     UFUNCTION(BlueprintCallable)
     void SetPauseAutoPlay(bool _bPause);
@@ -79,7 +79,7 @@ public:
     int32 GetAutoPlayDTFileIndex();
     
     UFUNCTION(BlueprintCallable)
-    void AddResultText(const FString& _Text);
+    void AddResultText(const FString& _text);
     
 };
 

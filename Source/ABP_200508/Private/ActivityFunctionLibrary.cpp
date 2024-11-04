@@ -3,6 +3,9 @@
 void UActivityFunctionLibrary::StartActivity(const FString& ActivityId) {
 }
 
+void UActivityFunctionLibrary::SetReceivedGameIntentDuringConversion(const bool bIsReceivedGameIntentDuringConversion) {
+}
+
 void UActivityFunctionLibrary::SetGameIntentScenario(const FString& scenarioActivityId) {
 }
 
@@ -28,6 +31,10 @@ bool UActivityFunctionLibrary::IsFirstReceived() {
 }
 
 bool UActivityFunctionLibrary::IsExistCustomData() {
+    return false;
+}
+
+bool UActivityFunctionLibrary::GetIsReceivedGameIntentDuringConversion() {
     return false;
 }
 

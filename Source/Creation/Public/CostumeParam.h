@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "IndexedColorList.h"
+#include "AttireExParam.h"
 #include "CostumeParam.generated.h"
 
 USTRUCT(BlueprintType)
@@ -18,6 +19,12 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FIndexedColorList ColorIDs;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FAttireExParam AttireEx_Ring;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FAttireExParam AttireEx_Entrance;
     
     FCostumeParam();
 };

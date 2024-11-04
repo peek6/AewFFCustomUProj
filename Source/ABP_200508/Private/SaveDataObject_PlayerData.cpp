@@ -103,6 +103,10 @@ bool USaveDataObject_PlayerData::CreatePossessedItemSaveData(FPossessedItemSaveD
     return false;
 }
 
+bool USaveDataObject_PlayerData::ContainsAutoAddDlcTeamList(FGuid _teamId) const {
+    return false;
+}
+
 void USaveDataObject_PlayerData::AllUpdateUnlockItemSaveData(TArray<FELUnlockItemSaveData>& _saveDataList) {
 }
 
@@ -110,6 +114,9 @@ void USaveDataObject_PlayerData::AllUpdatePossessedItemSaveData(TArray<FPossesse
 }
 
 void USaveDataObject_PlayerData::AddPossessedItemQuantity(TArray<FAddPossessItemQuantity> _addDataList) {
+}
+
+void USaveDataObject_PlayerData::AddAutoAddDlcTeamList(FGuid _teamId) {
 }
 
 USaveDataObject_PlayerData::USaveDataObject_PlayerData() {

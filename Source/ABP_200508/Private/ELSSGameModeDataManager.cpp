@@ -9,6 +9,9 @@ void UELSSGameModeDataManager::SetSSUserData(const FYGS2SSPlayerData& dat) {
 void UELSSGameModeDataManager::SetSSTempPlayerNetworkID(const FString& pid) {
 }
 
+void UELSSGameModeDataManager::SetSSRankingData(int32 InRank) {
+}
+
 void UELSSGameModeDataManager::SetPlayerEquipSettings(const FSSPlayerEquipSettings& inEquipData) {
 }
 

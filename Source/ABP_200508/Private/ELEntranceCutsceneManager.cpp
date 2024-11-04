@@ -25,6 +25,9 @@ TArray<AActor*> AELEntranceCutsceneManager::SetupBGModelsForEditor(UObject* Worl
 void AELEntranceCutsceneManager::SetSceneCaptureOnly(bool Flag) {
 }
 
+void AELEntranceCutsceneManager::SetReverseEntrance(bool Reverse) {
+}
+
 void AELEntranceCutsceneManager::SetFullScreenTitantron(bool Flag) {
 }
 
@@ -61,6 +64,10 @@ bool AELEntranceCutsceneManager::LoadAssetForTag(const FELWrestlerProfile_CutSce
 }
 
 bool AELEntranceCutsceneManager::LoadAssetForSingle(const FELWrestlerProfile_CutScene& CustomData, const FELEntranceCutsceneInfo& CutsceneInfo) {
+    return false;
+}
+
+bool AELEntranceCutsceneManager::IsReverseEntrance() const {
     return false;
 }
 
@@ -106,6 +113,9 @@ EELEntranceCamera_ChameleonEffectType AELEntranceCutsceneManager::GetScreenFilte
 void AELEntranceCutsceneManager::GetRootLocationAndRotation(FVector& Location, FRotator& Rotation) {
 }
 
+void AELEntranceCutsceneManager::GetReverseLocationAndRotation(FVector InLocation, FRotator InRotation, FVector& Location, FRotator& Rotation) {
+}
+
 void AELEntranceCutsceneManager::GetProfileCutsceneFromUnlockItemID(int32 UnlockItemId, int32 BaseEntranceNo, FELWrestlerProfile_CutScene& Cutscene, EELEntranceCutsceneItemType& ItemType) {
 }
 
@@ -120,7 +130,13 @@ int32 AELEntranceCutsceneManager::GetMusicIndex() {
 
 
 
-void AELEntranceCutsceneManager::GetMatchRecord_Tag(const TArray<FELEntranceCutsceneWrestlerInfo> Members, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord) {
+void AELEntranceCutsceneManager::GetMatchRecord_Team(const TArray<FELEntranceCutsceneWrestlerInfo> Members, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord) {
+}
+
+void AELEntranceCutsceneManager::GetMatchRecord_TagTeam(const TArray<FELEntranceCutsceneWrestlerInfo> Members, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord) {
+}
+
+void AELEntranceCutsceneManager::GetMatchRecord_Tag(EWrestlerID_N WreslterID, FGuid UID, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord) {
 }
 
 void AELEntranceCutsceneManager::GetMatchRecord_Single(EWrestlerID_N WreslterID, FGuid UID, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord) {
@@ -173,6 +189,7 @@ AELEntranceCutsceneManager::AELEntranceCutsceneManager() {
     this->UseMovieSlotForTitantron = 0;
     this->SequenceIndex_N = 0;
     this->LastFadeDuration = 0.00f;
+    this->bEnabledInput = true;
     this->LevelSequenceActor = NULL;
     this->DroppedRibbonInstance = NULL;
 }

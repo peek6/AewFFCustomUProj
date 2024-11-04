@@ -100,23 +100,8 @@ private:
     
 public:
     UELFootIK();
-    UFUNCTION(BlueprintCallable)
-    void SetUseStandTraceOffset(const bool UseStandOffset);
-    
-    UFUNCTION(BlueprintCallable)
-    void ResetHipsOffset();
-    
-    UFUNCTION(BlueprintCallable)
-    void RemoveFootOverlappedActor(const bool bLeft, AActor* OverlappedActor);
-    
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsCheckFloor() const;
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    FVector GetHipsOffset() const;
-    
-    UFUNCTION(BlueprintCallable)
-    void AddFootOverlappedActor(const bool bLeft, AActor* OverlappedActor, const bool bForceAdd);
     
 };
 

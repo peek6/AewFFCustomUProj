@@ -86,7 +86,7 @@ int32 UELStatsUtility::MaxGlobalStat(const UObject* WorldContextObject, EELGloba
     return 0;
 }
 
-bool UELStatsUtility::IngestDisconnectionStats(const UObject* WorldContextObject) {
+bool UELStatsUtility::IngestDisconnectionStats(const UObject* WorldContextObject, int32 LeaderboardRank) {
     return false;
 }
 

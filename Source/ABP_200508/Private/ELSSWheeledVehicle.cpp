@@ -103,7 +103,7 @@ AELSSPlayer* AELSSWheeledVehicle::GetVehicleOwner() const {
     return NULL;
 }
 
-void AELSSWheeledVehicle::GetOff_Multicast_Implementation(AELSSPlayer* Player) {
+void AELSSWheeledVehicle::GetOff_Multicast_Implementation(AELSSPlayer* Player, uint32 TransitId) {
 }
 
 float AELSSWheeledVehicle::GetEngineRotationRatio() const {

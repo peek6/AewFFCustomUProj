@@ -304,8 +304,8 @@ public:
     AELSSPlayer* GetVehicleOwner() const;
     
 private:
-    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void GetOff_Multicast(AELSSPlayer* Player);
+    UFUNCTION(NetMulticast, Reliable)
+    void GetOff_Multicast(AELSSPlayer* Player, uint32 TransitId);
     
 protected:
     UFUNCTION(BlueprintCallable)

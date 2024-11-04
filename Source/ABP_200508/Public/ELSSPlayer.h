@@ -55,6 +55,7 @@
 #include "SSPlayerEventDispatcherDelegate.h"
 #include "SSPlayerProfileForInGame.h"
 #include "SSReplicatedSyncMotionPlayState.h"
+#include "SSReplicatedVehicleStateParam.h"
 #include "SSWrestlerParam.h"
 #include "SSWrestlerSetupParam.h"
 #include "SSWrestlerTypeParam.h"
@@ -238,13 +239,13 @@ protected:
     FName AbilitySpeedupParticleEffectName;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    AActor* SeeThroughSilhouetteActor;
+    AELSSSilhouetteActorManager* SilhouetteActorManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSubclassOf<AELSSSilhouetteActorManager> SilhouetteActorManagerClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    AELSSSilhouetteActorManager* SilhouetteActorManager;
+    AActor* SilhouetteActor;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USkeletalMeshComponent* ClonedMeshComp;
@@ -382,15 +383,6 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float DirectionalThrow_BlowPowerScale;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float PredictPutTrapHeightLimitTop;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float PredictPutTrapHeightLimitBottom;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float PredictPutTrapHeightOffset;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     AELSSWeaponBase* StickedWeapon;
@@ -547,6 +539,9 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UCapsuleComponent* PhysicsCollision;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_VehicleStateParam, meta=(AllowPrivateAccess=true))
+    FSSReplicatedVehicleStateParam ReplicatedVehicleStateParam;
     
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
@@ -964,7 +959,7 @@ private:
     
 public:
     UFUNCTION(BlueprintCallable)
-    void UpdateCurrentVehicleDurabilityUI(APawn* vehiclePawn);
+    void UpdateCurrentVehicleDurabilityUI(APawn* VehiclePawn);
     
     UFUNCTION(BlueprintCallable)
     void UpdateCurrentShieldDurabilityUI(AELSSShieldBase* shield);
@@ -983,7 +978,7 @@ private:
     
 public:
     UFUNCTION(BlueprintCallable, Reliable, Server)
-    void TryGetOnVehicle_Server(APawn* vehiclePawn);
+    void TryGetOnVehicle_Server(APawn* VehiclePawn);
     
     UFUNCTION(BlueprintCallable)
     void TickVehiclePhysics(float inDeltaSeconds);
@@ -1015,14 +1010,6 @@ public:
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void TeleportToPlayerStartLocator();
     
-private:
-    UFUNCTION(BlueprintCallable, Server, Unreliable)
-    void SyncThrowWeaponAimState_Server(const FVector_NetQuantize& inActorLocation, const FVector_NetQuantize& inAimTargetLocation, float inGameplayTime);
-    
-    UFUNCTION(BlueprintCallable, Server, Unreliable)
-    void SyncPutTrapAimState_Server(const FVector_NetQuantize& inActorLocation, float inAimTargetYaw, float inGameplayTime);
-    
-public:
     UFUNCTION(BlueprintCallable)
     void SyncOffReceiver();
     
@@ -1057,10 +1044,6 @@ public:
 protected:
     UFUNCTION(BlueprintCallable)
     void StartHold(ESSButtonHold holdButton);
-    
-public:
-    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    AActor* SpawnSilhouetteActor();
     
 private:
     UFUNCTION(BlueprintCallable, Reliable, Server)
@@ -1158,9 +1141,6 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void SetEnableSyncMove(bool Enable);
-    
-    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void SetEnableSilhouetteActor(bool inEnable);
     
     UFUNCTION(BlueprintCallable)
     void SetDownFaceUpType(ESSActionDownFaceUpType inFaceUpType);
@@ -1331,6 +1311,10 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void OnSuccessCauseDamage(AELSSPlayer* damagedPlayer);
+    
+protected:
+    UFUNCTION(BlueprintCallable)
+    void OnRep_VehicleStateParam();
     
 private:
     UFUNCTION(BlueprintCallable)
@@ -1541,6 +1525,9 @@ public:
     bool IsPlayingSyncMotion() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsPlayingSituationMove() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsNearlyIdle() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -1670,13 +1657,13 @@ public:
     int32 GetRandomBadgeId() const;
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void GetOnVehicle_Multicast(APawn* vehiclePawn);
+    void GetOnVehicle_Multicast(const FSSReplicatedVehicleStateParam& Param);
     
     UFUNCTION(BlueprintCallable)
-    void GetOnVehicle(APawn* vehiclePawn);
+    void GetOnVehicle(APawn* VehiclePawn);
     
     UFUNCTION(BlueprintCallable)
-    void GetOffVehicle(APawn* vehiclePawn, bool damaged);
+    void GetOffVehicle(APawn* VehiclePawn, bool damaged);
     
     UFUNCTION(BlueprintCallable)
     int32 GetMoveId(ESSMoveCommand inMoveCommand);
@@ -1945,9 +1932,6 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void DetachEffectAllFromMesh();
-    
-    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void DestroySilhouetteActor();
     
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void DebugUnlimitedUseItemAndWeapon_Server(bool IsOn);

@@ -10,7 +10,7 @@ public:
     UYPossessedItem_DebugMenu();
 private:
     UFUNCTION(BlueprintCallable)
-        void OnUpdatePossessedItemQuantity(bool peek); // bool _Result);
+    void OnUpdatePossessedItemQuantity(bool Result);
     
 };
 

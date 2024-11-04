@@ -12,6 +12,9 @@ class ABP_200508_API AELMatchResultMenuFlowControllerBase : public AELInGameMenu
 public:
     AELMatchResultMenuFlowControllerBase();
     UFUNCTION(BlueprintCallable)
+    UELMatchResultMenuBase* StartExtraMenuSequence(TSubclassOf<UELMatchResultMenuBase> InMenuClass);
+    
+    UFUNCTION(BlueprintCallable)
     void Start();
     
     UFUNCTION(BlueprintCallable)
@@ -30,6 +33,9 @@ private:
 public:
     UFUNCTION(BlueprintCallable)
     UELMatchResultMenuBase* GetCurrentMenu();
+    
+    UFUNCTION(BlueprintCallable)
+    void EndExtraMenuSequence();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void AddToCommonLayout(UELMatchResultMenuBase* ResultMenuBase);

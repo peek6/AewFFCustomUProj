@@ -8,7 +8,7 @@ struct FSessionPlayerStateDataBP {
     GENERATED_BODY()
 public:
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
-    ESessionPlayerStateType StateArray[9];
+    ESessionPlayerStateType StateArray[10];
     
     ABP_200508_API FSessionPlayerStateDataBP();
 };

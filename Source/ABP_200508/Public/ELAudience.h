@@ -10,19 +10,19 @@ class ABP_200508_API AELAudience : public ASkeletalMeshActor {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY( EditAnywhere, meta=(AllowPrivateAccess=true))
-    FPerPlatformFloat PlatformTickInterval_00;
+    UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = true))
+        FPerPlatformFloat PlatformTickInterval_00;
+
+    UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = true))
+        FPerPlatformFloat PlatformTickInterval_01;
+
+    UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = true))
+        FPerPlatformFloat PlatformTickInterval_02;
+
+    UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = true))
+        FPerPlatformFloat PlatformTickInterval_03;
     
-    UPROPERTY( EditAnywhere, meta=(AllowPrivateAccess=true))
-    FPerPlatformFloat PlatformTickInterval_01;
-    
-    UPROPERTY( EditAnywhere, meta=(AllowPrivateAccess=true))
-    FPerPlatformFloat PlatformTickInterval_02;
-    
-    UPROPERTY( EditAnywhere, meta=(AllowPrivateAccess=true))
-    FPerPlatformFloat PlatformTickInterval_03;
-    
-    UPROPERTY( EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     EAudienceAnimationSharingType AnimationSharingType;
     
 public:

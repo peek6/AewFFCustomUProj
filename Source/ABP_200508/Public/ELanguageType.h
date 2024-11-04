@@ -10,6 +10,7 @@ enum class ELanguageType : uint8 {
     SPANISH,
     PORTUGAL,
     CHINESE,
+    CHINESET,
     JAPANESE,
 };
 

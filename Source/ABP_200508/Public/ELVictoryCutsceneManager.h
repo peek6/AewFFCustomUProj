@@ -3,7 +3,9 @@
 #include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "EStickinputDir.h"
+#include "EWrestlerID_N.h"
 #include "ELInteractiveVictoryCutsceneSpecialSceneParam.h"
 #include "ELVictoryCutsceneManagerCore.h"
 #include "ELVictoryCutsceneManager.generated.h"
@@ -75,6 +77,19 @@ protected:
 public:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnCancelTimerEvent();
+    
+protected:
+    UFUNCTION(BlueprintCallable)
+    void GetMatchRecord_Team(EWrestlerID_N WrestlerID_0, FGuid UID_0, EWrestlerID_N WrestlerID_1, FGuid UID_1, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord);
+    
+    UFUNCTION(BlueprintCallable)
+    void GetMatchRecord_TagTeam(EWrestlerID_N WrestlerID_0, FGuid UID_0, EWrestlerID_N WrestlerID_1, FGuid UID_1, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord);
+    
+    UFUNCTION(BlueprintCallable)
+    void GetMatchRecord_Tag(EWrestlerID_N WrestlerID, FGuid UID, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord);
+    
+    UFUNCTION(BlueprintCallable)
+    void GetMatchRecord_Single(EWrestlerID_N WrestlerID, FGuid UID, int32& Win, int32& Lose, int32& Draw, bool& IsCareerRecord);
     
 };
 

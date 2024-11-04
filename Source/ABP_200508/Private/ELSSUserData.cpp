@@ -27,6 +27,10 @@ FELSSGameRankData UELSSUserData::GetSSRankData() {
     return FELSSGameRankData{};
 }
 
+int32 UELSSUserData::GetPrevPlayerRank() {
+    return 0;
+}
+
 int32 UELSSUserData::GetPlayerRankExp() {
     return 0;
 }

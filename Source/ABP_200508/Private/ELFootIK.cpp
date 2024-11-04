@@ -1,23 +1,7 @@
 #include "ELFootIK.h"
 
-void UELFootIK::SetUseStandTraceOffset(const bool UseStandOffset) {
-}
-
-void UELFootIK::ResetHipsOffset() {
-}
-
-void UELFootIK::RemoveFootOverlappedActor(const bool bLeft, AActor* OverlappedActor) {
-}
-
 bool UELFootIK::IsCheckFloor() const {
     return false;
-}
-
-FVector UELFootIK::GetHipsOffset() const {
-    return FVector{};
-}
-
-void UELFootIK::AddFootOverlappedActor(const bool bLeft, AActor* OverlappedActor, const bool bForceAdd) {
 }
 
 UELFootIK::UELFootIK() {

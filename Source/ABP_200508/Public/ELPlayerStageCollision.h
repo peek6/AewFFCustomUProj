@@ -33,9 +33,12 @@ public:
     TMap<FName, FVector> tmpPos;
     
     UELPlayerStageCollision();
+    UFUNCTION(BlueprintCallable)
+    void ResetAlreadyInterpolateFlag();
+    
 protected:
     UFUNCTION(BlueprintCallable)
-    void MoveCapsule(AActor* Actor, const FVector& Location, const FTransform& Transform, FHitResult& HitResult);
+    void MoveCapsule(AActor* Actor, const FVector& Location, const FTransform& Transform, FHitResult& HitResult, bool bSweep);
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
@@ -43,6 +46,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
     bool IsMyMovesStageCollisionValue();
+    
+    UFUNCTION(BlueprintCallable)
+    bool IsCompletedInterpolation();
     
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
     bool IsAlreadyHit(const FName& Tag);

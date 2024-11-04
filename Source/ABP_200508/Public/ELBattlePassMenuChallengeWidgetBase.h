@@ -4,6 +4,8 @@
 #include "ELMainMenuWidgetBase.h"
 #include "ELBattlePassMenuChallengeWidgetBase.generated.h"
 
+class AELGameCommonPlayerControllerBase;
+
 UCLASS(Blueprintable, EditInlineNew)
 class ABP_200508_API UELBattlePassMenuChallengeWidgetBase : public UELMainMenuWidgetBase {
     GENERATED_BODY()
@@ -23,7 +25,7 @@ protected:
     void OnPressedBackTitle();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void OnChangeMainMenuCategory(int32 _addIndex);
+    void OnChangeMainMenuCategory(AELGameCommonPlayerControllerBase* InInputPlayerController, int32 _addIndex);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnChangeCategory(bool _isLeft);

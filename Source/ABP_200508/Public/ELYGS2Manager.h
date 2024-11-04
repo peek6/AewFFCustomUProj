@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "EYGS2Api.h"
 #include "EYGS2ErrorType.h"
 #include "SSModeServerParam.h"
 #include "SSServerEndpoint.h"
@@ -53,10 +54,10 @@ public:
     void SetNetworkObserver(UELNetworkObserverBase* _pNetworkObserver);
     
     UFUNCTION(BlueprintCallable)
-    void SetDisplayNameForDebug(const FString& DisplayNameForDebug);
+    void SetDisplayName(const FString& DisplayName);
     
     UFUNCTION(BlueprintCallable)
-    bool RequestSetDisplayNameForDebug();
+    bool RequestSetDisplayName();
     
     UFUNCTION(BlueprintCallable)
     bool RequestPingToAllServers();
@@ -69,6 +70,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     bool RequestAuth();
+    
+    UFUNCTION(BlueprintCallable)
+    void RemoveRequests(EYGS2Api inApiType);
     
 protected:
     UFUNCTION(BlueprintCallable)
@@ -131,6 +135,12 @@ public:
     
     UFUNCTION(BlueprintCallable)
     bool FindNearestServerPing(FString& Name, float& Ping);
+    
+    UFUNCTION(BlueprintCallable)
+    void EmptyRequests();
+    
+    UFUNCTION(BlueprintCallable)
+    void ClearNetworkErrorFlag();
     
     UFUNCTION(BlueprintCallable)
     void ApplicationStatusChanged(EELApplicationStatus AppStatus);

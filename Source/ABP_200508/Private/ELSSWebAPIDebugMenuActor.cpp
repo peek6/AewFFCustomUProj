@@ -9,7 +9,7 @@ void AELSSWebAPIDebugMenuActor::onSetSSGameStartIngest(EYGS2ErrorType enYGS2Erro
 void AELSSWebAPIDebugMenuActor::onSetSSGameResultIngest(EYGS2ErrorType enYGS2ErrorType, UYGS2RequestBase* pcYGS2RequestBase) {
 }
 
-void AELSSWebAPIDebugMenuActor::OnReadTitleStorage(EEOSTitleStorageEvent Event, UEOSTitleStorageBase* TitleStorage, const FEOSTitleStorageProgress& Progress) {
+void AELSSWebAPIDebugMenuActor::OnReadTitleStorage(EEOSTitleStorageEvent Event, UEOSTitleStorageBase* titleStorage, const FEOSTitleStorageProgress& Progress) {
 }
 
 void AELSSWebAPIDebugMenuActor::onGetSSPlayerDataIngest(EYGS2ErrorType enYGS2ErrorType, UYGS2RequestBase* pcYGS2RequestBase) {

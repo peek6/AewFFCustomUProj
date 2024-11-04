@@ -4,7 +4,7 @@
 
 UENUM(BlueprintType)
 enum class EMovesTag_MovesType : uint8 {
-    PEEK_ADDED_DEFAULT = 0x0,
+    DEFAULT = 0x0,
     MV_DDT = 0x1,
     MV_Powerbomb,
     MV_Hurricanerana = 0x4,

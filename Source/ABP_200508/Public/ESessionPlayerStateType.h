@@ -11,5 +11,16 @@ enum class ESessionPlayerStateType : uint8 {
     Skip,
     Wait,
     Quit,
+    Timeout,
+    Num_0 = 0x0,
+    Num_1,
+    Num_2,
+    Num_3,
+    Num_4,
+    Num_5,
+    Num_6,
+    Num_7,
+    Num_8,
+    Num_9,
 };
 

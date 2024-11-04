@@ -291,11 +291,19 @@ bool UELEOSGameSession::IsAnyPlayerStateMatched(ESessionPlayerStateNameType Stat
     return false;
 }
 
+bool UELEOSGameSession::IsAnyPlayerStateGreaterOrEqual(ESessionPlayerStateNameType StateName, ESessionPlayerStateType State) const {
+    return false;
+}
+
 bool UELEOSGameSession::IsAllPlayerStateMatchedInList(ESessionPlayerStateNameType StateName, const TArray<ESessionPlayerStateType>& StateList) const {
     return false;
 }
 
 bool UELEOSGameSession::IsAllPlayerStateMatched(ESessionPlayerStateNameType StateName, ESessionPlayerStateType State) const {
+    return false;
+}
+
+bool UELEOSGameSession::IsAllPlayerStateGreaterOrEqual(ESessionPlayerStateNameType StateName, ESessionPlayerStateType State) const {
     return false;
 }
 
@@ -368,7 +376,7 @@ int32 UELEOSGameSession::GetPlayerValidWrestlerNum(const FString& ProductUserID)
 }
 
 ESessionPlayerStateType UELEOSGameSession::GetPlayerStateByIndex(int32 PlayerIndex, ESessionPlayerStateNameType StateName) const {
-    return ESessionPlayerStateType::None;
+    return ESessionPlayerStateType::Num_0;
 }
 
 bool UELEOSGameSession::GetPlayerRank(const FString& ProductUserID, int32& Rank) {

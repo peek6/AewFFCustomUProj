@@ -156,6 +156,12 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSSStateTransitParam ReservedTransitParam;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_BeginStateMulticastParam, meta=(AllowPrivateAccess=true))
+    FSSStateTransitParam ReplicatedBeginStateMulticastParam;
+    
+    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
+    uint32 ExecutedBeginStateMulticastParamTransitId;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FSSStateTransitParam> PendingTransits;
     
@@ -259,6 +265,8 @@ protected:
     
 public:
     UELSSActionStatePlayerComponent();
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+    
     UFUNCTION(BlueprintCallable)
     bool UpdateLanding();
     
@@ -321,6 +329,11 @@ public:
     UFUNCTION(BlueprintCallable)
     void PerformWallHitReaction(const FVector& inHitNormal, bool inWallOver, bool inHitSituation);
     
+protected:
+    UFUNCTION(BlueprintCallable)
+    void OnRep_BeginStateMulticastParam();
+    
+public:
     UFUNCTION(NetMulticast, Reliable)
     void LandMultiCast(uint32 inStateHash, uint32 inServerTransitId);
     

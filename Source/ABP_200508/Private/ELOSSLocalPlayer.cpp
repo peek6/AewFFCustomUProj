@@ -113,6 +113,10 @@ void UELOSSLocalPlayer::GetOSSFriendsProductUserIdList(TArray<FString>& OutFrien
 void UELOSSLocalPlayer::GetOSSFriendsList(TArray<FELFriendInfo>& OutFriendArray, EELFriendsListType FriendsListType, int32 SortFlag) {
 }
 
+bool UELOSSLocalPlayer::GetOSSFriendNameByProductUserId(const FString& ProductUserID, FString& FriendName) {
+    return false;
+}
+
 FString UELOSSLocalPlayer::GetOSSAccountNickName() {
     return TEXT("");
 }

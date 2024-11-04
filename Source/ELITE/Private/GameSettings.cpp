@@ -18,6 +18,6 @@ void UGameSettings::GetAdjustDlcSaveDataAccessParams(TArray<FAdjustDlcSaveDataPa
 }
 
 UGameSettings::UGameSettings() {
-    this->ValidShippingSSmode = false;
+    this->ValidShippingSSmode = true;
 }
 

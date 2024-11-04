@@ -69,6 +69,7 @@ void AELSSPlayerState::SetPlayerEquipSettings_Ability(int32 inAbility1, int32 in
 void AELSSPlayerState::SetPlayerEquipSettings(const FSSPlayerEquipSettings& equipSettings) {
 }
 
+
 void AELSSPlayerState::SetIgnoreAnalytics_Server_Implementation(bool IsOn) {
 }
 
@@ -252,6 +253,10 @@ AELSSAIController* AELSSPlayerState::GetOwnerAIController() const {
     return NULL;
 }
 
+int32 AELSSPlayerState::GetLeaderboardRank() const {
+    return 0;
+}
+
 int32 AELSSPlayerState::GetKillCount() const {
     return 0;
 }
@@ -323,7 +328,7 @@ void AELSSPlayerState::ApplyLastPlayRecordToSaveData() {
 void AELSSPlayerState::ApplyDebugMenuParam() {
 }
 
-void AELSSPlayerState::ApplyChallengeCountToSaveData() {
+void AELSSPlayerState::ApplyChallengeCountToSaveData(int32 InRanking) {
 }
 
 void AELSSPlayerState::AddKillCount_Server_Implementation() {
@@ -421,5 +426,6 @@ AELSSPlayerState::AELSSPlayerState() {
     this->ClientIPForServer = TEXT("0.0.0.0");
     this->isResultTallyState = EResultTallyState::EResultTally_None;
     this->SelectSpawnPointId = -1;
+    this->LeaderboardRank = 0;
 }
 

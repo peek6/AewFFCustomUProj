@@ -33,6 +33,9 @@ public:
     FELSSGameRankData GetSSRankData();
     
     UFUNCTION(BlueprintCallable)
+    int32 GetPrevPlayerRank();
+    
+    UFUNCTION(BlueprintCallable)
     int32 GetPlayerRankExp();
     
     UFUNCTION(BlueprintCallable)

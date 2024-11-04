@@ -16,7 +16,7 @@ public:
     void SetStopMatch(bool _stop);
     
     UFUNCTION(BlueprintCallable)
-    void SetResultText(const FString& _Text);
+    void SetResultText(const FString& _text);
     
     UFUNCTION(BlueprintCallable)
     void SetPreEndAutoMatch(bool _bEnd);
@@ -79,7 +79,7 @@ public:
     int32 GetOnlineIdentificationNum() const;
     
     UFUNCTION(BlueprintCallable)
-    void AddResultText(const FString& _Text);
+    void AddResultText(const FString& _text);
     
 };
 

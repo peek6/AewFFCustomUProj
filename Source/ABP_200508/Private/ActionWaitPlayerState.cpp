@@ -20,7 +20,7 @@ void UActionWaitPlayerState::Abort() {
 UActionWaitPlayerState::UActionWaitPlayerState() {
     this->WorldContextObject = NULL;
     this->StateName = ESessionPlayerStateNameType::Initialize;
-    this->State = ESessionPlayerStateType::None;
+    this->State = ESessionPlayerStateType::Num_0;
     this->bAllMatched = false;
     this->bSetState = false;
     this->bCompleted = false;

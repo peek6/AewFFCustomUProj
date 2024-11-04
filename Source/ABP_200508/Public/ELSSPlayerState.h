@@ -226,9 +226,6 @@ public:
     
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FSSPlayerProfileForInGame SSPlayerProfileForInGame;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSSMatchMakeInfoForAnalytics SSMatchMakeInfo;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -261,6 +258,9 @@ public:
     
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FPlayerSpawnPointChangeResult onPlayerSpawnPointChangeEvent;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 LeaderboardRank;
     
     AELSSPlayerState();
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
@@ -340,6 +340,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void SetPlayerEquipSettings(const FSSPlayerEquipSettings& equipSettings);
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void SetLeaderboardRank();
     
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void SetIgnoreAnalytics_Server(bool IsOn);
@@ -517,6 +520,9 @@ public:
     AELSSAIController* GetOwnerAIController() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetLeaderboardRank() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     int32 GetKillCount() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -585,7 +591,7 @@ public:
     void ApplyDebugMenuParam();
     
     UFUNCTION(BlueprintCallable)
-    void ApplyChallengeCountToSaveData();
+    void ApplyChallengeCountToSaveData(int32 InRanking);
     
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void AddKillCount_Server();

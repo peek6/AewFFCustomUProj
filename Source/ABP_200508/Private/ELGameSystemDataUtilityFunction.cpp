@@ -1,5 +1,8 @@
 #include "ELGameSystemDataUtilityFunction.h"
 
+void UELGameSystemDataUtilityFunction::SetSystem_NewsLatestVersion(int32 _value, UObject* _pWorldContextObject) {
+}
+
 void UELGameSystemDataUtilityFunction::SetSystem_GameTitleVersionName(const FString& _value, UObject* _pWorldContextObject) {
 }
 
@@ -142,6 +145,10 @@ void UELGameSystemDataUtilityFunction::SetAccount_DisableCrossPlay(bool _value, 
 }
 
 void UELGameSystemDataUtilityFunction::SaveRequestSystemData(UObject* _pWorldContextObject, uint8 _saveDataAccessFlag) {
+}
+
+int32 UELGameSystemDataUtilityFunction::GetSystem_NewsLatestVersion(UObject* _pWorldContextObject) {
+    return 0;
 }
 
 FString UELGameSystemDataUtilityFunction::GetSystem_GameTitleVersionName(UObject* _pWorldContextObject) {

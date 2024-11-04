@@ -1,7 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
-#include "EELFingerSignPartType.h"
 #include "ELAnimInstance_FingerSign.generated.h"
 
 UCLASS(Blueprintable, NonTransient)
@@ -27,8 +26,5 @@ public:
     float OutBlendSecondsRight;
     
     UELAnimInstance_FingerSign();
-    UFUNCTION(BlueprintCallable)
-    bool IsUseMotion(EELFingerSignPartType Part);
-    
 };
 

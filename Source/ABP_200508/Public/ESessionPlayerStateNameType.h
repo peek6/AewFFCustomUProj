@@ -13,6 +13,7 @@ enum class ESessionPlayerStateNameType : uint8 {
     Assets,
     NextMatch,
     Widget,
+    Referee,
     Max,
 };
 

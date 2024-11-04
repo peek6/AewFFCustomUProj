@@ -5,6 +5,7 @@
 UENUM(BlueprintType)
 enum class EELYGS2SetupStep : uint8 {
     None,
+    DownloadingServerList,
     DownloadedServerList,
     RequestPing,
     Ready,

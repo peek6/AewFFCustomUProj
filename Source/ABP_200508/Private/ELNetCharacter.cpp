@@ -15,7 +15,7 @@ bool AELNetCharacter::IsSyncMotionActive_Implementation() const {
     return false;
 }
 
-bool AELNetCharacter::IsInELNetModeBP() {
+bool AELNetCharacter::IsInELNetModeBP() const {
     return false;
 }
 
@@ -23,11 +23,11 @@ bool AELNetCharacter::IsDebugLogEnabled(int32 DebugLogLevel) const {
     return false;
 }
 
-bool AELNetCharacter::HasELNetExecAuthorityBP() {
+bool AELNetCharacter::HasELNetExecAuthorityBP() const {
     return false;
 }
 
-bool AELNetCharacter::HasELNetAuthorityBP() {
+bool AELNetCharacter::HasELNetAuthorityBP() const {
     return false;
 }
 

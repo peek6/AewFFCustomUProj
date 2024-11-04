@@ -16,6 +16,11 @@ UCLASS(Abstract, Blueprintable)
 class ELITE_API UELDialogBoxManagerBase : public USingletonBase {
     GENERATED_BODY()
 public:
+protected:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FDisplayDialogBoxStackInfo> DisplayDialogStackList;
+    
+public:
     UELDialogBoxManagerBase();
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void RequestOpenTutorialDialog(const FDialogBoxResultDelegate& ResultDelegate, UELDialogBoxWidgetBase*& ResultDialog, bool& ResultOpen);
@@ -43,6 +48,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void RequestOpenMessageDialog(int32 MessageType, const FText& Text, const TArray<yEnDialogBoxChoices>& Choises, const FDialogBoxResultDelegate& ResultDelegate, const int32 DefaultIndex, bool IsSystemDialog, UELDialogBoxWidgetBase*& ResultDialog, bool& ResultOpen);
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void RequestOnlineNewsDialog(const UTexture2D* Texture, const FText& HeaderText, const FText& MainText, const FDialogBoxResultDelegate& ResultDelegate, UELDialogBoxWidgetBase*& ResultDialog, bool& ResultOpen);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void RequestForceCloseDialog(bool CloseALL);

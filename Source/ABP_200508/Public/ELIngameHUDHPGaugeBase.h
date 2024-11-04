@@ -165,6 +165,9 @@ protected:
     void OnPlayAnimationMeterValuePenalty_BP(float PenaltyRate, float LoopTime, bool Restart);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void OnPlayAnimationCurseEvent_BP(float LoopTime, bool Restart);
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnPlayAnimationActionSkill_BP(const FCareerActionSkillData& ActionSkillData, float LoopTime, bool Restart);
     
 private:
@@ -187,6 +190,11 @@ protected:
     UFUNCTION(BlueprintCallable)
     void OnFinishedAnimation_StatusText();
     
+private:
+    UFUNCTION(BlueprintCallable)
+    void OnCurseEvent(float InDuration);
+    
+protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnChangeSpecialState(bool Enable);
     

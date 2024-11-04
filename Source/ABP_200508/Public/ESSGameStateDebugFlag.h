@@ -23,6 +23,7 @@ enum class ESSGameStateDebugFlag : uint8 {
     TimeoutDurationExtend,
     AIDisableAll,
     BlockSaveAnalyticsLog,
+    OutputAnalyticsToUELog,
     Max,
 };
 

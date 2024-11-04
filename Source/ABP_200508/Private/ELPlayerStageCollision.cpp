@@ -1,6 +1,9 @@
 #include "ELPlayerStageCollision.h"
 
-void UELPlayerStageCollision::MoveCapsule(AActor* Actor, const FVector& Location, const FTransform& Transform, FHitResult& HitResult) {
+void UELPlayerStageCollision::ResetAlreadyInterpolateFlag() {
+}
+
+void UELPlayerStageCollision::MoveCapsule(AActor* Actor, const FVector& Location, const FTransform& Transform, FHitResult& HitResult, bool bSweep) {
 }
 
 bool UELPlayerStageCollision::IsTargetMovesStageCollisionValue_Implementation() {
@@ -8,6 +11,10 @@ bool UELPlayerStageCollision::IsTargetMovesStageCollisionValue_Implementation() 
 }
 
 bool UELPlayerStageCollision::IsMyMovesStageCollisionValue_Implementation() {
+    return false;
+}
+
+bool UELPlayerStageCollision::IsCompletedInterpolation() {
     return false;
 }
 

@@ -111,6 +111,9 @@ void UELPlayerDataUtilityFunction::DeleteScoreRankingInvalidCAW() {
 void UELPlayerDataUtilityFunction::DeleteMatchRecordsInvalidCAW(uint8 _saveDataAccessFlag) {
 }
 
+void UELPlayerDataUtilityFunction::DeleteMatchRecordsInvalidCAT(uint8 _saveDataAccessFlag) {
+}
+
 bool UELPlayerDataUtilityFunction::ApplyTmpPlayerDataToSaveData(uint8 _saveDataAccessFlag) {
     return false;
 }

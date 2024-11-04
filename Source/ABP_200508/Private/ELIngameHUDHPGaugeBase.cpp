@@ -35,6 +35,7 @@ void UELIngameHUDHPGaugeBase::OnPlayPassiveSkillEffect(const FStPassiveSkillData
 
 
 
+
 void UELIngameHUDHPGaugeBase::OnPlayActionSkill(int32 ActionSkillNo) {
 }
 
@@ -45,6 +46,9 @@ void UELIngameHUDHPGaugeBase::OnMeterValuePenalty(float PenaltyRate) {
 
 
 void UELIngameHUDHPGaugeBase::OnFinishedAnimation_StatusText() {
+}
+
+void UELIngameHUDHPGaugeBase::OnCurseEvent(float InDuration) {
 }
 
 

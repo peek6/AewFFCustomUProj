@@ -12,9 +12,6 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 m_Value;
     
-    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
-    int8 m_KeyName[56];
-    
     ABP_200508_API FSaveData_StatData();
 };
 

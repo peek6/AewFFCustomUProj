@@ -8,6 +8,8 @@
 #include "ShopGeneralItemManageData.h"
 #include "ELShopGeneralWidgetBase.generated.h"
 
+class AELGameCommonPlayerControllerBase;
+
 UCLASS(Blueprintable, EditInlineNew)
 class ELITE_API UELShopGeneralWidgetBase : public UELMainMenuWidgetBase {
     GENERATED_BODY()
@@ -57,7 +59,7 @@ protected:
     void OnDecideItem();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void OnChangeCategory(int32 _addIndex);
+    void OnChangeCategory(AELGameCommonPlayerControllerBase* _InputPlayerController, int32 _addIndex);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnCancelItem();

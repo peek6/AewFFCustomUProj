@@ -18,6 +18,7 @@
 #include "EELEOSLobbyPacketType.h"
 #include "ELobbyCheckStepForHost.h"
 #include "ELobbyInviteError.h"
+#include "ELobbyMPAStatus.h"
 #include "ELobbyPacketMenuInputType.h"
 #include "ELobbyPacketNotifyType.h"
 #include "ELobbyPacketPrivateMatchNotify.h"
@@ -220,6 +221,9 @@ private:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<ELobbyProcTypes, ELobbyProcStatus> LobbyProcStatusMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    ELobbyMPAStatus LobbyMPAStatus;
     
 public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -654,6 +658,9 @@ public:
     bool IsLobbyOwner() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsLobbyMemberFull(UEOSCommunityInfoBase* CommunityInfo);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsJoinedPrivateMatch();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -861,6 +868,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     bool ClearBlock(const FString& ProductUserID, EEOSLobbyUserMuteFlag Flag);
+    
+    UFUNCTION(BlueprintCallable)
+    bool CheckSearchResultGameMode(UEOSSearchResultsBase* _searchResults, const FString& Mode);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool CheckJoinable(UEOSCommunityInfoBase* CommunityInfo) const;

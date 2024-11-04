@@ -55,7 +55,7 @@ void AELSSPlayer::UpdateInteractUI(AActor* inInteractTarget) {
 void AELSSPlayer::UpdateInteractTarget() {
 }
 
-void AELSSPlayer::UpdateCurrentVehicleDurabilityUI(APawn* vehiclePawn) {
+void AELSSPlayer::UpdateCurrentVehicleDurabilityUI(APawn* VehiclePawn) {
 }
 
 void AELSSPlayer::UpdateCurrentShieldDurabilityUI(AELSSShieldBase* shield) {
@@ -70,7 +70,7 @@ void AELSSPlayer::UpdateAutonomousSyncRotate() {
 void AELSSPlayer::TryKoFinisher_Server_Implementation(AELSSPlayer* Target) {
 }
 
-void AELSSPlayer::TryGetOnVehicle_Server_Implementation(APawn* vehiclePawn) {
+void AELSSPlayer::TryGetOnVehicle_Server_Implementation(APawn* VehiclePawn) {
 }
 
 void AELSSPlayer::TickVehiclePhysics(float inDeltaSeconds) {
@@ -98,12 +98,6 @@ void AELSSPlayer::TickHoldTime(float DeltaTime) {
 }
 
 void AELSSPlayer::TeleportToPlayerStartLocator_Implementation() {
-}
-
-void AELSSPlayer::SyncThrowWeaponAimState_Server_Implementation(const FVector_NetQuantize& inActorLocation, const FVector_NetQuantize& inAimTargetLocation, float inGameplayTime) {
-}
-
-void AELSSPlayer::SyncPutTrapAimState_Server_Implementation(const FVector_NetQuantize& inActorLocation, float inAimTargetYaw, float inGameplayTime) {
 }
 
 void AELSSPlayer::SyncOffReceiver() {
@@ -136,7 +130,6 @@ void AELSSPlayer::StartSyncMotion(UAnimMontage* inReceiverMontage) {
 
 void AELSSPlayer::StartHold(ESSButtonHold holdButton) {
 }
-
 
 void AELSSPlayer::SpawnGunBullet_Server_Implementation(const FVector_NetQuantize& InLocation, const FRotator& InRotation, int32 inMoveId, int32 inStateHash) {
 }
@@ -216,7 +209,6 @@ void AELSSPlayer::SetExternalStationalCamera(AELSSStationalCamera* inStationalCa
 
 void AELSSPlayer::SetEnableSyncMove(bool Enable) {
 }
-
 
 void AELSSPlayer::SetDownFaceUpType(ESSActionDownFaceUpType inFaceUpType) {
 }
@@ -367,6 +359,9 @@ void AELSSPlayer::OnSuccessInteractTreasureBox(AELSSItemBox* inOpenedItemBox) {
 }
 
 void AELSSPlayer::OnSuccessCauseDamage(AELSSPlayer* damagedPlayer) {
+}
+
+void AELSSPlayer::OnRep_VehicleStateParam() {
 }
 
 void AELSSPlayer::OnRep_UseItemBeginTimeRep() {
@@ -553,6 +548,10 @@ bool AELSSPlayer::IsPlayingSyncMotion() const {
     return false;
 }
 
+bool AELSSPlayer::IsPlayingSituationMove() const {
+    return false;
+}
+
 bool AELSSPlayer::IsNearlyIdle() const {
     return false;
 }
@@ -718,13 +717,13 @@ int32 AELSSPlayer::GetRandomBadgeId() const {
     return 0;
 }
 
-void AELSSPlayer::GetOnVehicle_Multicast_Implementation(APawn* vehiclePawn) {
+void AELSSPlayer::GetOnVehicle_Multicast_Implementation(const FSSReplicatedVehicleStateParam& Param) {
 }
 
-void AELSSPlayer::GetOnVehicle(APawn* vehiclePawn) {
+void AELSSPlayer::GetOnVehicle(APawn* VehiclePawn) {
 }
 
-void AELSSPlayer::GetOffVehicle(APawn* vehiclePawn, bool damaged) {
+void AELSSPlayer::GetOffVehicle(APawn* VehiclePawn, bool damaged) {
 }
 
 int32 AELSSPlayer::GetMoveId(ESSMoveCommand inMoveCommand) {
@@ -1028,7 +1027,6 @@ void AELSSPlayer::DetachFeverEffect() {
 
 void AELSSPlayer::DetachEffectAllFromMesh() {
 }
-
 
 void AELSSPlayer::DebugUnlimitedUseItemAndWeapon_Server_Implementation(bool IsOn) {
 }
@@ -1340,6 +1338,7 @@ void AELSSPlayer::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
     DOREPLIFETIME(AELSSPlayer, Inventory);
     DOREPLIFETIME(AELSSPlayer, currentInventoryIndex);
     DOREPLIFETIME(AELSSPlayer, CurrentPickup);
+    DOREPLIFETIME(AELSSPlayer, ReplicatedVehicleStateParam);
     DOREPLIFETIME(AELSSPlayer, PickupedCarrot);
     DOREPLIFETIME(AELSSPlayer, InteractHoldBeginTimeRep);
     DOREPLIFETIME(AELSSPlayer, MoveSetSettings);
@@ -1374,9 +1373,9 @@ AELSSPlayer::AELSSPlayer() {
     this->EquippedAbilityId_2 = 0;
     this->EquippedAbilityId_3 = 0;
     this->AbilitySpeedupParticleEffectIntervalTime = 0.10f;
-    this->SeeThroughSilhouetteActor = NULL;
-    this->SilhouetteActorManagerClass = NULL;
     this->SilhouetteActorManager = NULL;
+    this->SilhouetteActorManagerClass = NULL;
+    this->SilhouetteActor = NULL;
     this->ClonedMeshComp = NULL;
     this->MeshMode = ESSPlayerMeshMode::Default;
     this->HeatSkillValue_AttentionBoostAll = 0.00f;
@@ -1403,9 +1402,6 @@ AELSSPlayer::AELSSPlayer() {
     this->ThrowPredictionSimFrequency = 25.00f;
     this->DirectionalThrow_PredictionSimFrequency = 30.00f;
     this->DirectionalThrow_BlowPowerScale = 1.30f;
-    this->PredictPutTrapHeightLimitTop = 40.00f;
-    this->PredictPutTrapHeightLimitBottom = -150.00f;
-    this->PredictPutTrapHeightOffset = -20.00f;
     this->StickedWeapon = NULL;
     this->InventoryAvailableLocalCount = 0;
     this->currentInventoryIndex = 0;

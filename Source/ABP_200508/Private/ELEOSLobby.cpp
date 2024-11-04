@@ -358,6 +358,10 @@ bool UELEOSLobby::IsLobbyOwner() const {
     return false;
 }
 
+bool UELEOSLobby::IsLobbyMemberFull(UEOSCommunityInfoBase* CommunityInfo) {
+    return false;
+}
+
 bool UELEOSLobby::IsJoinedPrivateMatch() {
     return false;
 }
@@ -613,6 +617,10 @@ bool UELEOSLobby::ClearBlock(const FString& ProductUserID, EEOSLobbyUserMuteFlag
     return false;
 }
 
+bool UELEOSLobby::CheckSearchResultGameMode(UEOSSearchResultsBase* _searchResults, const FString& Mode) {
+    return false;
+}
+
 bool UELEOSLobby::CheckJoinable(UEOSCommunityInfoBase* CommunityInfo) const {
     return false;
 }
@@ -646,5 +654,6 @@ UELEOSLobby::UELEOSLobby() {
     this->MuteFlag = EEOSLobbyUserMuteFlag::None;
     this->RequestResendCurrentWrestlerDataFlag = false;
     this->RequestResendCurrentWrestlerDataTimer = 0.00f;
+    this->LobbyMPAStatus = ELobbyMPAStatus::MPA_Destroy;
 }
 

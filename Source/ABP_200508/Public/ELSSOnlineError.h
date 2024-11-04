@@ -89,10 +89,16 @@ public:
     void Reset(bool excludedNetworkErrorData);
     
     UFUNCTION(BlueprintCallable)
+    void ReserveUniqueError(ESSOnlineErrorType inErrorType);
+    
+    UFUNCTION(BlueprintCallable)
     void ReserveErrorDialog(const FSSPlatformNetworkData& inErrorData);
     
     UFUNCTION(BlueprintCallable)
     void Release();
+    
+    UFUNCTION(BlueprintCallable)
+    void OpenReservedUniqueErrorDialog();
     
     UFUNCTION(BlueprintCallable)
     void OpenReservedDialog();
@@ -108,6 +114,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void NetworkConnectionStatusChange(EELNetworkConnectionStatus NewNetworkConnectionStatus, EELServerType ServerType);
+    
+    UFUNCTION(BlueprintCallable)
+    bool IsReservedUniqueError();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsReservedDialog() const;
@@ -135,6 +144,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     bool EndErrDialogData(const FString& tmpID, const bool retDialog);
+    
+    UFUNCTION(BlueprintCallable)
+    void ClearReservedUniqueError();
     
     UFUNCTION(BlueprintCallable)
     void ClearReservedDialog();

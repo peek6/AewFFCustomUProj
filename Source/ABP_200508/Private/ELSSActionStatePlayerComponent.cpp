@@ -1,4 +1,5 @@
 #include "ELSSActionStatePlayerComponent.h"
+#include "Net/UnrealNetwork.h"
 #include "Templates/SubclassOf.h"
 
 bool UELSSActionStatePlayerComponent::UpdateLanding() {
@@ -66,6 +67,9 @@ UAnimMontage* UELSSActionStatePlayerComponent::ReplaceMontage(UAnimMontage* inMo
 }
 
 void UELSSActionStatePlayerComponent::PerformWallHitReaction(const FVector& inHitNormal, bool inWallOver, bool inHitSituation) {
+}
+
+void UELSSActionStatePlayerComponent::OnRep_BeginStateMulticastParam() {
 }
 
 void UELSSActionStatePlayerComponent::LandMultiCast_Implementation(uint32 inStateHash, uint32 inServerTransitId) {
@@ -338,6 +342,12 @@ void UELSSActionStatePlayerComponent::BeginBlowState() {
 void UELSSActionStatePlayerComponent::BeginAirDamageState() {
 }
 
+void UELSSActionStatePlayerComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    
+    DOREPLIFETIME(UELSSActionStatePlayerComponent, ReplicatedBeginStateMulticastParam);
+}
+
 UELSSActionStatePlayerComponent::UELSSActionStatePlayerComponent() {
     this->DonePrepare = false;
     this->IdleState = NULL;
@@ -378,6 +388,7 @@ UELSSActionStatePlayerComponent::UELSSActionStatePlayerComponent() {
     this->LastRequestId = 0;
     this->LastServerTransitId = 0;
     this->LastExecutedServerTransitId = 0;
+    this->ExecutedBeginStateMulticastParamTransitId = 0;
     this->bPendingExpired = false;
     this->PendingDamageReaction = false;
     this->DisableStateMulticast = true;

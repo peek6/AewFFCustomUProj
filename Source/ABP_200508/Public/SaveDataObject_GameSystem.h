@@ -9,6 +9,9 @@ class ABP_200508_API USaveDataObject_GameSystem : public USaveDataObjectBase {
 public:
     USaveDataObject_GameSystem();
     UFUNCTION(BlueprintCallable)
+    void SetSystem_NewsLatestVersion(int32 _value);
+    
+    UFUNCTION(BlueprintCallable)
     void SetSystem_GameTitleVersionName(const FString& _value);
     
     UFUNCTION(BlueprintCallable)
@@ -181,6 +184,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void SetAccount_DisableCrossPlay(bool _value);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetSystem_NewsLatestVersion() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     FString GetSystem_GameTitleVersionName() const;

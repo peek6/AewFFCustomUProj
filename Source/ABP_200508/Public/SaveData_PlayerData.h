@@ -95,6 +95,9 @@ public:
     FCrateStateSaveData m_Crate;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FGuid> m_AutoAddDlcTeamIDList;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FKeyMapSettingData> _ssGamepadKeyConfigList;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))

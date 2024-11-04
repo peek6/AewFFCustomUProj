@@ -6,6 +6,9 @@ void UELGameInstance::WrestlerSelectStart() {
 void UELGameInstance::WrestlerSelectEnd() {
 }
 
+void UELGameInstance::StartTournamentMode(EELTournamentType Type, EELTournamentDifficulty Difficulty, FELTournamentInfo Info) {
+}
+
 void UELGameInstance::Shutdown() {
 }
 
@@ -46,6 +49,42 @@ void UELGameInstance::SetupBattlePassManager() {
 }
 
 void UELGameInstance::SetTurnCheckFlg(bool _Flg) {
+}
+
+void UELGameInstance::SetTournamentType(EELTournamentType Type) {
+}
+
+void UELGameInstance::SetTournamentState(EELTournamentState State) {
+}
+
+void UELGameInstance::SetTournamentRound(int32 Round) {
+}
+
+void UELGameInstance::SetTournamentRetryCountLimit(int32 Count) {
+}
+
+void UELGameInstance::SetTournamentRetryCount(int32 Count) {
+}
+
+void UELGameInstance::SetTournamentPlayerWrestler(const FELTournamentWrestler& InWrestler) {
+}
+
+void UELGameInstance::SetTournamentPartnerWrestler(const FELTournamentWrestler& InWrestler) {
+}
+
+void UELGameInstance::SetTournamentMode(bool bSet) {
+}
+
+void UELGameInstance::SetTournamentMiniGame(bool bSet) {
+}
+
+void UELGameInstance::SetTournamentMatchResult(bool bPlayerWin, int32 MatchScore) {
+}
+
+void UELGameInstance::SetTournamentInfo(const FELTournamentInfo& Info) {
+}
+
+void UELGameInstance::SetTournamentBracket(const TArray<FELTournamentBracket>& Bracket) {
 }
 
 void UELGameInstance::SetTmpJukeboxSavedata(FELTmpJukeboxSaveData tmpData) {
@@ -348,6 +387,9 @@ void UELGameInstance::SetAutoMatchErrorCheck(bool _Error) {
 void UELGameInstance::SetAutoMatchAnimationDebugView(bool _view) {
 }
 
+void UELGameInstance::SetAttireExMenu(bool bSet) {
+}
+
 void UELGameInstance::SetAllAchievementLocalCount(TArray<int32> _AchievementArray) {
 }
 
@@ -358,6 +400,12 @@ void UELGameInstance::SetAchievementLocalCountArray(EELAchievementList _Achievem
 }
 
 void UELGameInstance::ResizeTextureStreamingPool(int32 DesiredCVarPoolSize, int32 DesiredCVarMaxTempMemoryAllowed) {
+}
+
+void UELGameInstance::ResetTournamentUnlockItemFlag() {
+}
+
+void UELGameInstance::ResetTournamentRound() {
 }
 
 void UELGameInstance::ResetTextureStreamingPoolSize() {
@@ -387,6 +435,26 @@ bool UELGameInstance::IsUseVictory_N() const {
 }
 
 bool UELGameInstance::IsUseEntrance_N() const {
+    return false;
+}
+
+bool UELGameInstance::IsTournamentValidRound() const {
+    return false;
+}
+
+bool UELGameInstance::IsTournamentMode() const {
+    return false;
+}
+
+bool UELGameInstance::IsTournamentMiniGame() const {
+    return false;
+}
+
+bool UELGameInstance::IsTournamentFinalRound() const {
+    return false;
+}
+
+bool UELGameInstance::IsTagTournament() const {
     return false;
 }
 
@@ -422,6 +490,14 @@ bool UELGameInstance::IsPlayCareerMatch() {
     return false;
 }
 
+bool UELGameInstance::IsOpenTournamentMenu() {
+    return false;
+}
+
+bool UELGameInstance::IsOpenAttireEXMenu() {
+    return false;
+}
+
 bool UELGameInstance::IsMiniGameEnd() {
     return false;
 }
@@ -435,6 +511,10 @@ bool UELGameInstance::IsInputKeybord() {
 }
 
 bool UELGameInstance::IsEntranceCutscene() const {
+    return false;
+}
+
+bool UELGameInstance::IsEnableTournamentRetry() const {
     return false;
 }
 
@@ -522,6 +602,10 @@ bool UELGameInstance::IsAutoMatchAnimationDebugView() {
     return false;
 }
 
+bool UELGameInstance::IsAttireExMenu() const {
+    return false;
+}
+
 void UELGameInstance::InitWholeLevelBGMIDArray() {
 }
 
@@ -571,6 +655,66 @@ UELUnlockableItemManagerBase* UELGameInstance::GetUnlockableItemManager() const 
 
 UELTutorialManager* UELGameInstance::GetTutorialManager() const {
     return NULL;
+}
+
+bool UELGameInstance::GetTournamentUnlockItemFlag() const {
+    return false;
+}
+
+EELTournamentType UELGameInstance::GetTournamentType() const {
+    return EELTournamentType::Invalid;
+}
+
+EELTournamentState UELGameInstance::GetTournamentState() const {
+    return EELTournamentState::None;
+}
+
+bool UELGameInstance::GetTournamentRoundInfo(int32 Round, FELTournamentRoundInfo& Info) const {
+    return false;
+}
+
+int32 UELGameInstance::GetTournamentRound() const {
+    return 0;
+}
+
+int32 UELGameInstance::GetTournamentRetryCountRemain() const {
+    return 0;
+}
+
+int32 UELGameInstance::GetTournamentRetryCountLimit() const {
+    return 0;
+}
+
+int32 UELGameInstance::GetTournamentRetryCount() const {
+    return 0;
+}
+
+void UELGameInstance::GetTournamentPlayerWrestler(FELTournamentWrestler& OutWrestler) const {
+}
+
+void UELGameInstance::GetTournamentPartnerWrestler(FELTournamentWrestler& OutWrestler) const {
+}
+
+FText UELGameInstance::GetTournamentName() const {
+    return FText::GetEmpty();
+}
+
+bool UELGameInstance::GetTournamentMatchResult() const {
+    return false;
+}
+
+FELTournamentInfo UELGameInstance::GetTournamentInfo() const {
+    return FELTournamentInfo{};
+}
+
+EELTournamentDifficulty UELGameInstance::GetTournamentDifficulty() const {
+    return EELTournamentDifficulty::Easy;
+}
+
+void UELGameInstance::GetTournamentBracketByRound(int32 Round, FELTournamentBracket& Bracket) {
+}
+
+void UELGameInstance::GetTournamentBracket(TArray<FELTournamentBracket>& Bracket) {
 }
 
 FELTmpJukeboxSaveData UELGameInstance::GetTmpJukeboxSavedata() {
@@ -673,6 +817,7 @@ EELMatchResultType UELGameInstance::GetMatchResultType_N() const {
 FELMatchResultParam UELGameInstance::GetMatchResult() {
     return FELMatchResultParam{};
 }
+
 
 
 UELKeyConfigManager* UELGameInstance::GetKeyConfigManager() const {
@@ -797,6 +942,13 @@ TArray<FString> UELGameInstance::GetDebugAutoPlayInfoArray() {
 
 FString UELGameInstance::GetDebugAutoPlayInfo(int32 _Index) {
     return TEXT("");
+}
+
+bool UELGameInstance::GetCurrentTournamentRoundInfo(FELTournamentRoundInfo& Info) const {
+    return false;
+}
+
+void UELGameInstance::GetCurrentTournamentBracket(FELTournamentBracket& Bracket) {
 }
 
 int32 UELGameInstance::GetCurrentJukeboxPlayID() {
@@ -1004,6 +1156,10 @@ UELGameInstance* UELGameInstance::Get(const UObject* WorldContextObject) {
     return NULL;
 }
 
+bool UELGameInstance::ForceQuitApplication() {
+    return false;
+}
+
 bool UELGameInstance::FindControllerId(const int32 ControllerId) const {
     return false;
 }
@@ -1020,6 +1176,9 @@ void UELGameInstance::DisableLookAtWrestler() {
 void UELGameInstance::DestroyDebugCamera() {
 }
 
+void UELGameInstance::DecisionTournamentBracket() {
+}
+
 void UELGameInstance::DebugChangeCurrentLanguage(int32 LangType) {
 }
 
@@ -1033,6 +1192,15 @@ void UELGameInstance::CareerChangeToHubLevel(FName PreLevelName, FName NextLevel
 void UELGameInstance::CareerBackToLevel() {
 }
 
+
+void UELGameInstance::AddTournamentRound() {
+}
+
+void UELGameInstance::AddTournamentRetryCountLimit(int32 Add) {
+}
+
+void UELGameInstance::AddTournamentRetryCount() {
+}
 
 int32 UELGameInstance::AddAchievementLocalCountArray(EELAchievementList _Achievement, int32 _Add) {
     return 0;

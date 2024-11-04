@@ -3,8 +3,7 @@
 #include "UObject/Object.h"
 #include "ELOnlineNews.generated.h"
 
-class UEOSTitleStorage;
-class UOnlineNewsData;
+class UELOnlineNewsData;
 
 UCLASS(Blueprintable)
 class UELOnlineNews : public UObject {
@@ -12,21 +11,15 @@ class UELOnlineNews : public UObject {
 public:
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UEOSTitleStorage* TitleStorage;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TMap<FString, UOnlineNewsData*> OnlineNewsDataMap;
+    UELOnlineNewsData* CurrentOnlineNewsData;
     
 public:
     UELOnlineNews();
     UFUNCTION(BlueprintCallable)
-    void OnDownloadJson(const FString& _Filename, const FString& _Filedata);
+    UELOnlineNewsData* GetCurrentOnlineNewsData();
     
     UFUNCTION(BlueprintCallable)
-    void GetOnlineNewDataMap(TMap<FString, UOnlineNewsData*>& _OnlineNewsMap);
-    
-    UFUNCTION(BlueprintCallable)
-    void ClearOnlineNewDataMap();
+    void ClearCurrentOnlineNewData();
     
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "AttireExParam.h"
 #include "SSAttirePaintPair.h"
 #include "SSAttirePartPair.h"
 #include "SSAttireParam.generated.h"
@@ -13,6 +14,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FSSAttirePaintPair> Paints;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FAttireExParam AttireEx;
     
     FSSAttireParam();
 };

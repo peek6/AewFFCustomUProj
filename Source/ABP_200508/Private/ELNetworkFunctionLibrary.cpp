@@ -1,5 +1,9 @@
 #include "ELNetworkFunctionLibrary.h"
 
+bool UELNetworkFunctionLibrary::Switch_TestNetworkServiceAccountAvailable() {
+    return false;
+}
+
 bool UELNetworkFunctionLibrary::IsNetworkAvailable(const UObject* WorldContextObject) {
     return false;
 }

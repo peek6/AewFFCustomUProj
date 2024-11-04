@@ -76,5 +76,6 @@ enum class EChallengeActionType : uint8 {
     SSTreasureBoxInOneMatch,
     SSExpItemInOneMatch,
     SSHighestReachPlayerRank,
+    TournamentEliteNoRetryClear,
 };
 

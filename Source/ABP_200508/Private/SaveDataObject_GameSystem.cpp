@@ -1,5 +1,8 @@
 #include "SaveDataObject_GameSystem.h"
 
+void USaveDataObject_GameSystem::SetSystem_NewsLatestVersion(int32 _value) {
+}
+
 void USaveDataObject_GameSystem::SetSystem_GameTitleVersionName(const FString& _value) {
 }
 
@@ -172,6 +175,10 @@ void USaveDataObject_GameSystem::SetAccount_HideProfanity(bool _value) {
 }
 
 void USaveDataObject_GameSystem::SetAccount_DisableCrossPlay(bool _value) {
+}
+
+int32 USaveDataObject_GameSystem::GetSystem_NewsLatestVersion() const {
+    return 0;
 }
 
 FString USaveDataObject_GameSystem::GetSystem_GameTitleVersionName() const {

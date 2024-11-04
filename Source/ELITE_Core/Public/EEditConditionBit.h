@@ -4,7 +4,7 @@
 
 UENUM(BlueprintType)
 enum class EEditConditionBit : uint8 {
-    PEEK_ADDED_DEFAULT = 0x0,
+    DEFAULT = 0x0,
     BaseBody = 0x1,
     Ring,
     Entrance = 0x4,

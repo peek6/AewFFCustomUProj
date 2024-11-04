@@ -4,7 +4,7 @@
 
 UENUM(BlueprintType)
 enum class EMovesTag_DamagePart : uint8 {
-    PEEK_ADDED_DEFAULT = 0x0,
+    DEFAULT = 0x0,
     DP_Head = 0x1,
     DP_Body,
     DP_Arms = 0x4,
